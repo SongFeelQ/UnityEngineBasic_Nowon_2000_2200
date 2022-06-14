@@ -25,9 +25,8 @@ using System;
 /*  namespace 키워드
     공간을 구분하기 위한 키워드.
     내부 식별자를 가지고 namespace로 묶인 변수, 함수, 클래스, 인터페이스 등을 구분함.
-
  */
-namespace MyApp // Note: actual namespace depends on the project name.
+namespace FirstProject // Note: actual namespace depends on the project name.
 {
     /*  internal 키워드
         동일 어셈블리에서만 접근 가능한 키워드.
@@ -48,6 +47,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
          */
         static void Main(string[] args)
         {
+            System.Console.WriteLine("Hello World!");
             Console.WriteLine("Hello World!");
         }
     }
