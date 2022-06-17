@@ -7,30 +7,54 @@
 // human1 의 나이 100, 키 200, 성별 남
 // human2 의 나이 50, 키 150, 성별 여
 // 프로그램을 실행하면 각 사람이 본인의 나이를 콘솔창에 출력하도록 함.
-
 namespace InstantiationExample
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Human human1 = new Human();
+            Human human1 = new Human(200f, 'M');
+            Human human2 = new Human(150f, 'F');
+
             human1.age = 100;
-            human1.height = 200;
-            human1.gender = 'M';
-            Console.WriteLine(human1.age);
-            Human human2 = new Human();
             human2.age = 50;
-            human2.height = 150;
-            human2.gender = 'F';
-            Console.WriteLine(human2.age);
+
+            human1.SayMyAge();
+            human2.SayMyAge();
+            Human.SayClassName();
         }
     }
     
     class Human
     {
-        public int age;
-        public float height;
-        public char gender;
+        // 접근 제한자
+        // private : 외부 클래스 / 객체에서 접근할 수 없도록 제한
+        // public : 외부 클래스 / 객체에서 접근할 수 있도록 제한 해제
+        // internal : 동일 프로젝트에서 public 처럼 동작함
+        // protected : 자식만 접근가능하도록 제한
+        //
+        // class 의 멤버들은 접근제한자를 명시하지 않으면 기본적으로 private
+        // 접근 제한자를 정확하게 명시해야 하는 이유는
+        // 제 3자가 봤을때 접근하면 안되는 멤버에 접근하는 등의 사고로 인해
+        // 코드를 잘못 작성할 가능성을 없애기 위함이다.
+        internal int age;
+        private float height;
+        private char gender;
+
+        public static void SayClassName()
+        {
+
+        }
+
+        public void SayMyAge()
+        {
+            Console.WriteLine(age);
+        }
+
+        public Human(float height, char gender)
+        {
+            this.height = height;
+            this.gender = gender;
+        }
     }
 }
