@@ -36,10 +36,10 @@ namespace Array
             Console.WriteLine(arrString[2]);
 
             char[] arrChar = { 'a', 'n', 'd' };
-            String tmpString = new String(arrChar);
+            String tmpString = new String(arrChar); // String은 클래스 타입.
             Console.WriteLine(tmpString);
-            string tmpString2 = "Luke"; 
-            Console.WriteLine(tmpString2[0]);
+            string tmpString2 = "Luke"; // string은 
+            Console.WriteLine(tmpString2[1]);
             // string이 배열은 아니다. 배열로 인덱스 접근은 가능하지만, 배열은 아니다.
         } 
     }
