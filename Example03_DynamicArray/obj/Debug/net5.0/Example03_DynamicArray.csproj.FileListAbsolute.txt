@@ -13,3 +13,4 @@ C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\Example03_Dynami
 C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\Example03_DynamicArray\obj\Debug\net5.0\ref\Example03_DynamicArray.dll
 C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\Example03_DynamicArray\obj\Debug\net5.0\Example03_DynamicArray.pdb
 C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\Example03_DynamicArray\obj\Debug\net5.0\Example03_DynamicArray.genruntimeconfig.cache
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\Example03_DynamicArray\obj\Debug\net5.0\Example03_DynamicArray.csproj.AssemblyReference.cache
