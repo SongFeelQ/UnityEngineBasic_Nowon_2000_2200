@@ -1,0 +1,16 @@
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\bin\Debug\net5.0\GenericCollections.exe
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\bin\Debug\net5.0\GenericCollections.deps.json
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\bin\Debug\net5.0\GenericCollections.runtimeconfig.json
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\bin\Debug\net5.0\GenericCollections.runtimeconfig.dev.json
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\bin\Debug\net5.0\GenericCollections.dll
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\bin\Debug\net5.0\ref\GenericCollections.dll
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\bin\Debug\net5.0\GenericCollections.pdb
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\GenericCollections.csproj.AssemblyReference.cache
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\GenericCollections.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\GenericCollections.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\GenericCollections.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\GenericCollections.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\GenericCollections.dll
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\ref\GenericCollections.dll
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\GenericCollections.pdb
+C:\Users\User\Documents\GitHub\UnityEngineBasic_Nowon_2000_2200\GenericCollections\obj\Debug\net5.0\GenericCollections.genruntimeconfig.cache
