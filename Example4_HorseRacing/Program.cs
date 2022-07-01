@@ -36,6 +36,8 @@ namespace Example4_HorseRacing
             Random random = new Random();
             const int FinishPoint = 200;
             bool gameFinished = false;
+            int gradecount = 0;
+            string[] FinishedHorseName = new string[5];
 
             // 말 다섯마리를 만든다.
             Horse[] horse = new Horse[5];
@@ -57,7 +59,7 @@ namespace Example4_HorseRacing
             while (gameFinished == false)
             {
                 count++;
-                Console.WriteLine($"===== 시작 {count} 초 경과 =====");
+                Console.WriteLine($"\n========== 시작 {count} 초 경과 ==========");
                 for (int i = 0; i < 5; i++)
                 {
                     if (horse[i].dontMove == false & horse[i].range < FinishPoint)
@@ -65,16 +67,31 @@ namespace Example4_HorseRacing
                         int tmpMoveDistance = random.Next(minSpeed, maxSpeed + 1);
                         horse[i].Run(tmpMoveDistance);
                         Console.Write($"{horse[i].name}가 달린 거리 :{tmpMoveDistance} / ");
+                        Console.WriteLine($"{horse[i].name}의 현재 거리 :{horse[i].range}");
                     }
-                    Console.WriteLine($"{horse[i].name}의 현재 거리 :{horse[i].range}");
-
-                    if (horse[i].range >= FinishPoint)
+                    if (horse[i].dontMove == false & horse[i].range >= FinishPoint)
                     {
                         horse[i].dontMove = true;
+                        horse[i].grade = gradecount;
+                        Console.WriteLine($"!!! {horse[i].name}(이)가 {horse[i].grade+1}등으로 완주 !!!");
+                        FinishedHorseName[gradecount] = horse[i].name;
+                        gradecount++;
+                    }
+                    if (horse[i].dontMove == true)
+                    {
+                        Console.WriteLine($"{horse[i].name} : {horse[i].grade+1}등");
                     }
                 }
-
-                Thread.Sleep(1000);
+                if (gradecount == 5)
+                {
+                    gameFinished = true;
+                }
+                else Thread.Sleep(1000);
+            }
+            Console.WriteLine("\n========== !!! 경기 종료 !!! ==========");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"{i+1}등 : {FinishedHorseName[i]}");
             }
         }
     }
@@ -84,6 +101,7 @@ namespace Example4_HorseRacing
         internal string name;
         internal int range;
         internal bool dontMove;
+        internal int grade;
 
         public void Run(int moveDistance)
         {
