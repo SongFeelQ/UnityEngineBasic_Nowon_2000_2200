@@ -24,7 +24,7 @@ using System.Threading;
 
 
 
-namespace Example4_HorseRacing
+namespace Example04_HorseRacing
 {
     internal class Program
     {
