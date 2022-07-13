@@ -7,7 +7,7 @@ namespace Example03_DynamicArray
     {
         static void Main(string[] args)
         {
-            DynamicArray dynamicArray = new DynamicArray(); // DynamicArray 클래스가 해당 객체를 참조하는 형태
+            DynamicArray<int> dynamicArray = new DynamicArray<int>(); // DynamicArray 클래스가 해당 객체를 참조하는 형태
             dynamicArray.Add(5);
             dynamicArray.Add(4);
             dynamicArray.Add(3);

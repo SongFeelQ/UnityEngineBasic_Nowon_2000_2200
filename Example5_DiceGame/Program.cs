@@ -68,10 +68,17 @@ namespace Example05_DiceGame
                     if (starTileIndex > totalTile)
                         starTileIndex -= totalTile;
 
+                    if (starTileIndex == totalTile)
+                    {
+                        starTileIndex++;
+                        starTileIndex -= totalTile;
+
+                    }
+
                     if (map.tiles.TryGetValue(starTileIndex, out TileInfo tileInfo_star))
                     {
                         currentStarPoint += (tileInfo_star as TileInfo_Star).starValue;
-                    }
+                    }                    
 
                     else
                     {
