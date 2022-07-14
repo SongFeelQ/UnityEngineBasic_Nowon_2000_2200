@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Example03_DynamicArray
 {
-    internal class DynamicArray<T>
+    internal class DynamicArray<T> : IEnumerable<T>
     {
         // const : constant. 해당 변수를 상수형태로 취급하겠다는 키워드.
         private const int DEFAULT_SIZE = 1;
@@ -18,6 +19,7 @@ namespace Example03_DynamicArray
             {
                 return _data[index];
             }
+
             set
             {
                 _data[index] = value;
@@ -93,6 +95,75 @@ namespace Example03_DynamicArray
             }
             _data[Length - 1] = default(T);
             Length--;
+        }
+
+        // 공변성 : 자식 객체가 부모 타입을 참조 가능한 것
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new DynamicArrayEnum<T>(_data);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class DynamicArrayEnum<T> : IEnumerator<T>
+    {
+        private bool _disposed = false;
+        private readonly T[] _data;
+        private int index = -1;
+
+        public T Current
+        {
+            get
+            {
+                // 예외 캐치 시도
+                try
+                {
+                    return _data[index];
+                }
+                // 예외가 잡히면 실행할 내용
+                catch
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
+
+        object IEnumerator.Current { get => Current; }
+
+        public DynamicArrayEnum(T[] data)
+            => _data = data;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+            if (disposing)
+            {
+                //관리되지 않는 리소스 해제
+            }
+
+            _disposed = true;
+        }
+
+        public bool MoveNext()
+        {
+            index++;
+            return (index >= 0) && (index < _data.Length);
+        }
+
+        public void Reset()
+        {
+            index = -1;
         }
     }
 }

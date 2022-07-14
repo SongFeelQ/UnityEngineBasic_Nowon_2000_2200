@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,25 @@ using System.Threading.Tasks;
 
 namespace Example06_MyLinkedList
 {
-    internal class MyLinkedList<T>
+    // sealed : 상속 불가능한 제한자
+    public sealed class Node<K>
     {
-        // inner class : 클래스 내에 클래스 타입 정의
-        public class Node<K>
+        public K value;
+        public Node<K> prev;
+        public Node<K> next;
+
+        public Node(K value)
         {
-            public K value;
-            public Node<K> prev;
-            public Node<K> next;
-
-            public Node<K> (K value);
-
+            this.value = value;
         }
+    }
+    internal class MyLinkedList<T> 
+    {
+        
         Node<T> first, last, tmp1, tmp2;
+
+        public Node<T> First { get => first; }
+        public Node<T> Last { get => last; }
 
         public int Count
         {
@@ -151,5 +158,54 @@ namespace Example06_MyLinkedList
             return nodes;
         }
 
+    }
+       
+    public class MyLinkedListEnum<T> : IEnumerator<T>
+    {
+        private bool _firstFlag = false;
+        private Node<T> _current;
+        private Node<T> _first;
+
+        public T Current
+        {
+            get
+            {
+                try
+                {
+                    return _current.value;
+                }
+                catch
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
+
+        object IEnumerator.Current { get => Current; }
+
+        public MyLinkedListEnum(Node<T> first)
+        {
+            _current = _first = first;
+        }
+
+        public void Dispose()
+        {
+            
+        }
+
+        public bool MoveNext()
+        {
+            if (_firstFlag)
+                _current = _current.next;
+            else
+                _firstFlag = true;
+            return _current != null ? true : false;
+        }
+
+        public void Reset()
+        {
+            _firstFlag= false;
+            _current = _first;
+        }
     }
 }
