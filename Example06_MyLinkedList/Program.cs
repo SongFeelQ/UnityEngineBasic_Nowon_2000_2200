@@ -39,6 +39,7 @@ namespace Example06_MyLinkedList
 
     public class EnumeratorTest
     {
+        // FSM 
         public IEnumerator<int> E_GetFactorial(int num)
         {
             int tmpResult = 1;
