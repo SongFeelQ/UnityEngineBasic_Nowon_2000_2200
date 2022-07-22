@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerFollowingCamera : MonoBehaviour
 {
     private List<Transform> targets = new List<Transform>();
-    private Vector3 offset = new Vector3(0f, 3f, -4f);
+    private Vector3 offset = new Vector3(0f, 1.5f, -3f);
     private int targetIndex;
 
     private void Start()
