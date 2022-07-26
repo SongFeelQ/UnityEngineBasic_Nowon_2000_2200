@@ -418,6 +418,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   _damage: 5
+  _destroyEffect: {fileID: 8253699651383067095, guid: 6950cc747e6ef7c468487ccf47f47c1b, type: 3}
 --- !u!54 &7213142538989026237
 Rigidbody:
   m_ObjectHideFlags: 0

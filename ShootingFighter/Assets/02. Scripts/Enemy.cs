@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Enemy : MonoBehaviour
 {
     private float _hp;
@@ -16,7 +15,11 @@ public class Enemy : MonoBehaviour
             _hp = value;
             hpBar.value = _hp / hpMax;
             if (_hp <= 0)
+            {
+                GameObject effect = Instantiate(_destroyEffect, transform.position, transform.rotation);
+                Destroy(effect, 1f);
                 Destroy(gameObject);
+            }                
         }
         get
         {
@@ -31,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private LayerMask _targetLayer;
     [SerializeField] private float _damage;
-
+    [SerializeField] private GameObject _destroyEffect;
     private void Awake()
     {
         hp = hpMax;
@@ -45,7 +48,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (1<<other.gameObject.layer == _targetLayer)
+        if (1 << other.gameObject.layer == _targetLayer)
         {
             if (other.gameObject.TryGetComponent(out Player player))
             {
