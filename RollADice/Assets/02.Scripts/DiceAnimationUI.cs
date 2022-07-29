@@ -11,40 +11,62 @@ public class DiceAnimationUI : MonoBehaviour
     [SerializeField] private float _animationDeley;
     [SerializeField] private float _animationTime;
     private float _timer;
-    private List<Sprite> sprites = new List<Sprite> ();
+    private List<Sprite> sprites = new List<Sprite>();
+    //private Coroutine _coroutine = null;
+    public bool isPlaying { get; private set; }
+    public delegate void AfterAnimation(int diceValue);
+    event AfterAnimation OnAnimationFinish;
+
+    public void RegisterCallBack(AfterAnimation afterAnimation)
+    {
+        OnAnimationFinish += afterAnimation;
+    }
 
     private void Awake()
     {
+        instance = this;
         LoadSprites();
     }
 
     private void LoadSprites()
     {
-        sprites = Resources.LoadAll<Sprite>("DiceImages").ToList();
-       
+        sprites = Resources.LoadAll<Sprite>("DiceImages").ToList();       
     }
 
-    private void Update()
+    //private class E_DiceAnimationEnum
+    //{
+    //    public int MoveNext()
+    //    {
+    //        int state = 0;
+    //        switch (state)
+    //        {
+    //            case 0:
+    //                if (GameManager.instance != null)
+    //                   {
+    //                         state++
+    //                         return 1;
+    //                    }
+    //                 else
+    //                      return -1;
+    //            case 1:
+    //                return 2;
+    //            case 2:
+    //                return 3;
+    //            default:
+    //                return -1;
+    //        }
+    //    }
+    //}
+
+    public void DoDiceAnimation(int diceValue)
     {
-        if (_timer < 0)
-        {
-            _image.sprite = sprites[Random.Range(0, sprites.Count)];
-            _timer = _animationDeley;
-        }
-        else
-        {
-            _timer -= Time.deltaTime;
-        }
+        //_coroutine = StartCoroutine(E_DiceAnimation());
+        StartCoroutine(E_DiceAnimation(diceValue));
     }
 
-
-    public void DoDiceAnimation()
+    IEnumerator E_DiceAnimation(int diceValue)
     {
-        StartCoroutine(E_DiceAnimation());
-    }
-
-    IEnumerator E_DiceAnimation()
-    {
+        isPlaying = true;
         float elapsedTime = 0;
         while (elapsedTime < _animationTime)
         {
@@ -63,6 +85,8 @@ public class DiceAnimationUI : MonoBehaviour
         //    _image.sprite = sprites[Random.Range(0, sprites.Count)];
         //    yield return new WaitForSeconds(_animationDeley);
         //}
-        yield return null;
+        _image.sprite = sprites[diceValue - 1];
+        OnAnimationFinish(diceValue);
+        isPlaying = false;
     }
 }
