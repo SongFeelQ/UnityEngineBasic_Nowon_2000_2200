@@ -21,6 +21,12 @@ public class NotesMaker : MonoBehaviour
     {
         get => _videoPlayer.isPlaying;
     }
+    public void OnRecordButtonClick()
+    {
+        _songData = new SongData();
+        _songData.videoName = _videoPlayer.clip.name;
+        _videoPlayer.Play();
+    }
 
     public void OnStopRecordButtonClick()
     {
@@ -28,12 +34,6 @@ public class NotesMaker : MonoBehaviour
         _videoPlayer.Stop();
     }
 
-    public void OnRecordButtonClick()
-    {
-        _songData = new SongData();
-        _songData.videoName = _videoPlayer.clip.name;
-        _videoPlayer.Play();
-    }
 
     private void Update()
     {

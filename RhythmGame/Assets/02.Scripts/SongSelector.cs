@@ -5,6 +5,7 @@ using UnityEngine.Video;
 
 public class SongSelector : MonoBehaviour
 {
+    #region
     public static SongSelector instance;
     private void Awake()
     {
@@ -12,6 +13,7 @@ public class SongSelector : MonoBehaviour
             Destroy(instance.gameObject);
         instance = this;
     }
+    #endregion
     public VideoClip clip { get; private set; }
     public SongData songData { get; private set; }
     public bool isDataLoaded { get; private set; }
@@ -21,8 +23,8 @@ public class SongSelector : MonoBehaviour
         try // 예외가 발생하는지 시도.
         {
             clip = Resources.Load<VideoClip>($"VideoClips/{clipName}");
-            TextAsset songDataText = Resources.Load<TextAsset>($"SongData/{clip.name}");
-            JsonUtility.FromJson<SongData>(songDataText.ToString());
+            TextAsset songDataText = Resources.Load<TextAsset>($"SongsData/{clip.name}");
+            songData = JsonUtility.FromJson<SongData>(songDataText.ToString());
         }
         catch // 예외가 발생할경우 catch 문으로 반환
         {
