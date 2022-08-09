@@ -27,10 +27,9 @@ public class NotesManager : MonoBehaviour
     public void StartSpawn()
     {
         if (_noteDataQueue.Count > 0)
-        {
-            _videoPlayer.clip = SongSelector.instance.clip;
-            _videoPlayer.Play();
+        {        
             StartCoroutine(E_Spawning());
+            Invoke("PlayVideoPlayer", noteFallingTime * noteSpeedScale);
         }
     }
 
@@ -41,7 +40,7 @@ public class NotesManager : MonoBehaviour
         {
             for (int i = 0; i < _noteDataQueue.Count; i++)
             {
-                if (_noteDataQueue.Peek().time < (Time.time - startTimeMark) / noteSpeedScale)
+                if (_noteDataQueue.Peek().time < (Time.time - startTimeMark))
                 {
                     NoteData noteData = _noteDataQueue.Dequeue();
 
@@ -53,6 +52,13 @@ public class NotesManager : MonoBehaviour
             yield return null;
         }
     }
+
+    private void PlayVideoPlayer()
+    {
+        _videoPlayer.clip = SongSelector.instance.clip;
+        _videoPlayer.Play();
+    }
+
 
     private void Awake()
     {
