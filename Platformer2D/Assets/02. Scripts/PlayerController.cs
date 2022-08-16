@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
         Attack,
         Dash,
         Slide,
+        Crouch,
+        DownJump,
     }
 
     private enum IdleState
@@ -77,6 +79,23 @@ public class PlayerController : MonoBehaviour
         Finish,
     }
 
+    private enum CrouchState
+    {
+        Idle,
+        Prepare,
+        Casting,
+        OnAction,
+        Finish,
+    }
+    private enum DownJumpState
+    {
+        Idle,
+        Prepare,
+        Casting,
+        OnAction,
+        Finish,
+    }
+
     public State state;
     [SerializeField] private IdleState _idleState;
     [SerializeField] private MoveState _moveState;
@@ -85,12 +104,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SlideState _slideState;
     [SerializeField] private AttackState _attackState;
     [SerializeField] private DashState _dashState;
+    [SerializeField] private CrouchState _crouchState;
+    [SerializeField] private DownJumpState _downJumpState;
 
     private Vector2 _move;
     [SerializeField] private float _moveSpeed = 1.0f;
-    [SerializeField] private float _jumpForce = 2.0f;
-    [SerializeField] private float _slideSpeed = 1.0f;
-    [SerializeField] private float _dashSpeed = 0.5f;
+    [SerializeField] private float _jumpForce = 3.0f;
+    [SerializeField] private float _slideSpeed = 2.0f;
+    [SerializeField] private float _dashSpeed = 2.0f;
+    [SerializeField] private float _downJumpForce = 1.0f;
 
     [SerializeField] private Vector2 _attackHitCastCenter;
     [SerializeField] private Vector2 _attackHitCastSize;
@@ -149,6 +171,7 @@ public class PlayerController : MonoBehaviour
         _colSizeOrigin = _col.size;
         _slideAnimationTime = GetAnimationTime("Slide");
         _attackAnimationTime = GetAnimationTime("Attack");
+        _dashAnimationTime = GetAnimationTime("Dash");
     }
 
     private void Update()
@@ -171,7 +194,8 @@ public class PlayerController : MonoBehaviour
                 ChangeState(State.Idle);
         }
 
-        if (Input.GetKeyDown(KeyCode.C) && (state != State.Jump) && (state != State.Fall))
+        if (Input.GetKeyDown(KeyCode.C) && (state != State.Jump && state != State.Fall && 
+                                            state != State.DownJump && state != State.Crouch))
             ChangeState(State.Jump);
 
         if (Input.GetKeyDown(KeyCode.Z) && (state == State.Idle || state == State.Move))
@@ -184,6 +208,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && (state == State.Idle || state == State.Move ||
                                                     state == State.Jump || state == State.Fall))
             ChangeState(State.Dash);
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) && (state == State.Idle || state == State.Move))
+            ChangeState(State.Crouch);
+
+        if (Input.GetKeyDown(KeyCode.C) && state == State.Crouch)
+            ChangeState(State.DownJump);
 
         UpdateState();
     }
@@ -217,6 +247,12 @@ public class PlayerController : MonoBehaviour
                 break;
             case State.Slide:
                 UpdateSlideState();
+                break;
+            case State.Crouch:
+                UpdateCrouchState();
+                break;
+            case State.DownJump:
+                UpdateDownJumpState();
                 break;
             default:
                 break;
@@ -252,6 +288,12 @@ public class PlayerController : MonoBehaviour
             case State.Slide:
                 _slideState = SlideState.Idle;
                 break;
+            case State.Crouch:
+                _crouchState = CrouchState.Idle;
+                break;
+            case State.DownJump:
+                _downJumpState = DownJumpState.Idle;
+                break;
             default:
                 break;
         }
@@ -275,10 +317,16 @@ public class PlayerController : MonoBehaviour
                 _attackState = AttackState.Prepare;
                 break;
             case State.Dash:
-                _dashState= DashState.Prepare;
+                _dashState = DashState.Prepare;
                 break;
             case State.Slide:
                 _slideState = SlideState.Prepare;
+                break;
+            case State.Crouch:
+                _crouchState = CrouchState.Prepare;
+                break;
+            case State.DownJump:
+                _downJumpState = DownJumpState.Prepare;
                 break;
             default:
                 break;
@@ -349,7 +397,8 @@ public class PlayerController : MonoBehaviour
                 _jumpState++;
                 break;
             case JumpState.Casting:
-                if (_groundDetector.isDetected == false)
+                if (_groundDetector.isDetected == false ||
+                    _groundDetector.isGroundChanged)
                     _jumpState++;
                 break;
             case JumpState.OnAction:
@@ -483,12 +532,10 @@ public class PlayerController : MonoBehaviour
                 isDirectionChangable = false;
                 _animator.Play("Dash");
                 _animationTimer = _dashAnimationTime;
-                _col.offset = _colOffsetCrouch;
-                _col.size = _colSizeCrouch;
                 _dashState++;
                 break;
             case DashState.Casting:
-                if (_animationTimer < _dashAnimationTime * (3.0f / 4.0f))
+                if (_animationTimer < _dashAnimationTime * (3.5f / 4.0f))
                     _dashState++;
                 else
                 {
@@ -497,7 +544,7 @@ public class PlayerController : MonoBehaviour
                 _animationTimer -= Time.deltaTime;
                 break;
             case DashState.OnAction:
-                if (_animationTimer < _dashAnimationTime * (1.0f / 4.0f))
+                if (_animationTimer < _dashAnimationTime * (1.5f / 4.0f))
                     _dashState++;
                 else
                 {
@@ -506,8 +553,6 @@ public class PlayerController : MonoBehaviour
                 _animationTimer -= Time.deltaTime;
                 break;
             case DashState.Finish:
-                _col.offset = _colOffsetOrigin;
-                _col.size = _colSizeOrigin;
                 if (_animationTimer < 0)
                 {
                     ChangeState(State.Idle);
@@ -517,6 +562,70 @@ public class PlayerController : MonoBehaviour
                     _rb.velocity = Vector2.right * _direction * _moveSpeed;
                 }
                 _animationTimer -= Time.deltaTime;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void UpdateCrouchState()
+    {
+        switch (_crouchState)
+        {
+            case CrouchState.Idle:
+                break;
+            case CrouchState.Prepare:
+                _move.x = 0.0f;
+                isMovable = false;
+                isDirectionChangable = true;
+                _animator.Play("Crouch");
+                _crouchState = CrouchState.OnAction;
+                break;
+            case CrouchState.Casting:
+                break;
+            case CrouchState.OnAction:
+                if (Input.GetKeyUp(KeyCode.DownArrow))
+                {
+                    ChangeState(State.Idle);
+                }
+                break;
+            case CrouchState.Finish:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void UpdateDownJumpState()
+    {
+        switch (_downJumpState)
+        {
+            case DownJumpState.Idle:
+                break;
+            case DownJumpState.Prepare:
+                isMovable = false;
+                isDirectionChangable = true;
+                _animator.Play("Jump");
+                _rb.velocity = new Vector2(_rb.velocity.x, 0.0f);
+                _groundDetector.IgnoreLastGround();
+                _downJumpState++;
+                break;
+            case DownJumpState.Casting:
+                _rb.AddForce(Vector2.up * _downJumpForce, ForceMode2D.Impulse);
+                _downJumpState++;
+                break;
+            case DownJumpState.OnAction:
+                if (_rb.velocity.y < 0.0f)
+                {
+                    _animator.Play("Fall");
+                }
+                if (_groundDetector.isIgnoringGround ||
+                    _groundDetector.isGroundChanged)
+                {
+                    ChangeState(State.Idle);
+                }
+                break;
+            case DownJumpState.Finish:
                 break;
             default:
                 break;
