@@ -45,7 +45,6 @@ public class GroundDetector : MonoBehaviour
         _center.x = transform.position.x + _col.offset.x;
         _center.y = transform.position.y - _size.y / 2 - 0.01f;
         _detectedGround = Physics2D.OverlapBox(_center, _size, 0, _targetLayer);
-        Debug.Log(_detectedGround.name);
         if (_detectedGround != null)
         {
             ISDETECTED = true;

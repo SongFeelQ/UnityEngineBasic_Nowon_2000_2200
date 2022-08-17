@@ -21,12 +21,12 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - PlayerCollision
   - 
   - 
   - 
   - Enemy
-  - 
+  - EnemyCollision
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2060927649
+    locked: 0
+  - name: Enemy
+    uniqueID: 2532509985
     locked: 0
