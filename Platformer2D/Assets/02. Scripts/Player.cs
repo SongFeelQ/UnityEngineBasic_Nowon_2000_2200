@@ -31,16 +31,26 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider _hpBar;
     [SerializeField] private int _hpMax;
     private PlayerController _controller;
+    private CapsuleCollider2D _col;
+
     public void Hurt(int damage)
     {
+        if (invincible)
+            return;
+
+        Debug.Log("Hurt");
+
         hp -= damage;
+        DamagePopUp.Create(transform.position + (Vector3.up * _col.size.y), damage, gameObject.layer);
         if (_hp > 0)
         {
             _controller.TryHurt();
+            InvincibleForSeconds(1.0f);
         }
         else
         {
             _controller.TryDie();
+            invincible = true;
         }
 
     }
@@ -66,5 +76,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<PlayerController>();
+        hp = _hpMax;
+        _col = GetComponent<CapsuleCollider2D>();
     }
 }

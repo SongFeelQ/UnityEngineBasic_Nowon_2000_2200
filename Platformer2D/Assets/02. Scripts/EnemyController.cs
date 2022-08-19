@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private HurtState _hurtState;
     [SerializeField] private DieState _dieState;
     [SerializeField] private AIState _aiState;
-    private Vector2 _move;
+    
 
     [Header("AI")]
     [SerializeField] private bool _aiAutoFollow;
@@ -84,6 +84,9 @@ public class EnemyController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float _moveSpeed;
+    private bool _isMovable = true;
+    private bool _isDirectionChangable = true;
+    private Vector2 _move;
 
     // -1 : left, +1 : right
     private int _direction;
@@ -133,21 +136,18 @@ public class EnemyController : MonoBehaviour
             ChangeState(State.Hurt);
         }
     }
+    public void TryDie()
+    {
+        ChangeState(State.Die);
+    }
 
     public void KnockBack(int knockBackDirection)
     {
-        _move.x = 0.0f;
         _rb.velocity = Vector2.zero;
         _rb.AddForce(new Vector2(knockBackDirection * _knockBackForce.x, _knockBackForce.y), ForceMode2D.Impulse);
     }
 
-    public void TryDie()
-    {
 
-    }
-
-    private bool _isMovable = true;
-    private bool _isDirectionChangable = true;
 
     private void Awake()
     {
@@ -260,6 +260,8 @@ public class EnemyController : MonoBehaviour
             default:
                 break;
         }
+
+        _state = newState;
     }
     private void UpdateAIState()
     {

@@ -389,12 +389,13 @@ MonoBehaviour:
   _dashState: 0
   _crouchState: 0
   _downJumpState: 0
+  _hurtState: 0
+  _dieState: 0
   _moveSpeed: 1
   _jumpForce: 3
   _slideSpeed: 2
   _dashSpeed: 2
   _downJumpForce: 0.3
-  _knockBackForce: {x: 0, y: 0}
   _attackHitCastCenter: {x: 0.1, y: 0.15}
   _attackHitCastSize: {x: 0.5, y: 0.5}
   _attackTargetLayer:
@@ -403,9 +404,11 @@ MonoBehaviour:
   _directionInit: 1
   _colOffsetCrouch: {x: 0, y: 0.075}
   _colSizeCrouch: {x: 0.2, y: 0.18}
+  _knockBackForce: {x: 1, y: 0}
   _slideAnimationTime: 0
   _attackAnimationTime: 0
   _dashAnimationTime: 0
+  _hurtAnimationTime: 0
   _animationTimer: 0
 --- !u!4 &156073042
 Transform:
@@ -507,9 +510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79538315cde87240b7d73344a01dc1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   _hpBar: {fileID: 1855977074}
-  _hpMax: 50
+  _hpMax: 20
 --- !u!1 &288378621
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +789,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 0.5
+  orthographic size: 0.7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1949,8 +1952,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 1938818822}
-  _hpMax: 50
-  _damage: 1
+  _hpMax: 10
+  _damage: 5
   _targetLayer:
     serializedVersion: 2
     m_Bits: 32768
