@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachineFall : StateMachineBase
+public class StateMachineAttack : StateMachineBase
 {
-    private GroundDetector _groundDetector;
-    public StateMachineFall(StateMachineManager.State machineState, 
-                            StateMachineManager manager, 
-                            AnimationManager animationManager) 
+    private float _animationTime;
+    private float _animationTimer;
+    public StateMachineAttack(StateMachineManager.State machineState, 
+                              StateMachineManager manager,
+                              AnimationManager animationManager) 
         : base(machineState, manager, animationManager)
     {
-        _groundDetector = manager.GetComponent<GroundDetector>();
+        _animationTime = animationManager.GetAnimationTime("Attack");
     }
 
     public override void Execute()
     {
         manager.isMovable = false;
-        manager.isDirectionChangable = true;
+        manager.isDirectionChangable = false;
         state = State.Prepare;
     }
 
@@ -32,11 +33,10 @@ public class StateMachineFall : StateMachineBase
     public override bool isExecuteOK()
     {
         bool isOK = false;
-        if (_groundDetector.isDetected == false &&
-            manager.state == StateMachineManager.State.Idle || 
+        if (manager.state == StateMachineManager.State.Idle ||
             manager.state == StateMachineManager.State.Move ||
             manager.state == StateMachineManager.State.Jump ||
-            manager.state == StateMachineManager.State.DownJump)
+            manager.state == StateMachineManager.State.Fall)
             isOK = true;
         return isOK;
     }
@@ -49,16 +49,19 @@ public class StateMachineFall : StateMachineBase
             case State.Idle:
                 break;
             case State.Prepare:
-                animationManager.Play("Fall");
+                manager.ResetVelocity();
+                animationManager.Play("Attack");
+                _animationTimer = _animationTime;
                 state = State.OnAction;
                 break;
             case State.Casting:
                 break;
             case State.OnAction:
-                if (_groundDetector.isDetected)
+                if (_animationTimer < 0)
                 {
                     state++;
                 }
+                _animationTimer -= Time.deltaTime;
                 break;
             case State.Finish:
                 nextState = StateMachineManager.State.Idle;
