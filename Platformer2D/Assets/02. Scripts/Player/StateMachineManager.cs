@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class StateMachineManager : MonoBehaviour
 {
+    public bool isReady;
     public enum State
     {
         Idle,
@@ -16,7 +17,6 @@ public class StateMachineManager : MonoBehaviour
         Dash,
         Slide,
         Crouch,
-        DownJump,
         Hurt,
         Die,
     }
@@ -67,6 +67,8 @@ public class StateMachineManager : MonoBehaviour
     private float y => Input.GetAxis("Vertical");
 
     // ==============================
+    // Public Methods
+    // ==============================
 
     public void ChangeState(State newState)
     {
@@ -87,22 +89,27 @@ public class StateMachineManager : MonoBehaviour
     }
 
     // ==============================
+    // Public Methods
+    // ==============================
 
     private void Awake()
     {
+        StartCoroutine(E_Init());
+    }
+
+    IEnumerator E_Init()
+    {
+        direction = _directionInit;
         _animationManager = GetComponent<AnimationManager>();
         _rb = GetComponent<Rigidbody2D>();
         _player = GetComponent<Player>();
-        //_machines.Add(State.Idle, new StateMachineIdle(State.Idle, this, _animationManager));
-        //_machines.Add(State.Move, new StateMachineMove(State.Move, this, _animationManager));
-        //_machines.Add(State.Jump, new StateMachineJump(State.Jump, this, _animationManager));
-        //_states.Add(KeyCode.C, State.Jump);
-        //_machines.Add(State.Fall, new StateMachineFall(State.Fall, this, _animationManager));
-        //_machines.Add(State.Attack, new StateMachineAttack(State.Attack, this, _animationManager));
-        //_states.Add(KeyCode.X, State.Attack);
-        
+        yield return new WaitUntil(() => _animationManager.isReady);
+
+        InitStateMachines();
         _current = _machines[State.Idle];
         _current.Execute();
+
+        isReady = true;
     }
 
     private void InitStateMachines()
@@ -153,7 +160,8 @@ public class StateMachineManager : MonoBehaviour
 
     private void Update()
     {
-        _move.x = h;
+        if (isReady == false)
+            return;
 
         if (isDirectionChangable)
         {
@@ -165,6 +173,8 @@ public class StateMachineManager : MonoBehaviour
 
         if (isMovable)
         {
+            _move.x = h;
+
             if (Mathf.Abs(_move.x) > 0.0f)
                 ChangeState(State.Move);
             else
@@ -185,6 +195,9 @@ public class StateMachineManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isReady == false)
+            return;
+
         _current.FixedUpdateState();
         transform.position += new Vector3(_move.x * _moveSpeed, _move.y, 0) * Time.fixedDeltaTime;
     }
@@ -196,7 +209,12 @@ public class StateMachineManager : MonoBehaviour
         Vector2 attackCenter = new Vector2(_attackHitCastCenter.x * _direction,
                                            _attackHitCastCenter.y) + _rb.position;
 
-        RaycastHit2D hit = Physics2D.BoxCast(attackCenter, _attackHitCastSize, 0, Vector2.zero, 0, _attackTargetLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(attackCenter, 
+                                             _attackHitCastSize, 
+                                             0, 
+                                             Vector2.zero, 
+                                             0, 
+                                             _attackTargetLayer);
 
         if (hit.collider != null)
         {

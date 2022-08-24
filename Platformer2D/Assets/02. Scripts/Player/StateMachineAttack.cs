@@ -11,6 +11,7 @@ public class StateMachineAttack : StateMachineBase
                               AnimationManager animationManager) 
         : base(machineState, manager, animationManager)
     {
+        shortKey = KeyCode.X;
         _animationTime = animationManager.GetAnimationTime("Attack");
     }
 
