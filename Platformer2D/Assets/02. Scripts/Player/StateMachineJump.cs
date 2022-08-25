@@ -112,12 +112,12 @@ public class StateMachineJump : StateMachineBase
             case State.Prepare:
                 animationManager.Play("Jump");
                 _rb.velocity = new Vector2(_rb.velocity.x, 0);
-                _rb.AddForce(Vector2.up * _downJumpForce, ForceMode2D.Impulse);
+                //_rb.AddForce(Vector2.up * _downJumpForce, ForceMode2D.Impulse);
                 _groundDetector.IgnoreLastGround();
                 state++;
                 break;
             case State.Casting:
-                _rb.velocity = new Vector2(_rb.velocity.x, 0.0f);
+                //_rb.velocity = new Vector2(_rb.velocity.x, 0.0f);
                 _rb.AddForce(Vector2.up * _downJumpForce, ForceMode2D.Impulse);
                 state++;
                 break;

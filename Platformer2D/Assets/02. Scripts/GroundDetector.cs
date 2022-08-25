@@ -61,11 +61,11 @@ public class GroundDetector : MonoBehaviour
     {
         isIgnoringGround = true;
         Physics2D.IgnoreCollision(_col, targetCol, true);
-        float targetColCenter = targetCol.transform.position.y + targetCol.offset.y;
+        float targetColCenter = targetCol.transform.position.y + targetCol.offset.y * targetCol.transform.lossyScale.y;
 
         yield return new WaitUntil(() =>
         {
-            return _col.transform.position.y < targetColCenter - targetCol.offset.y;
+            return _col.transform.position.y < targetColCenter;
         });
 
         yield return new WaitUntil(() =>
@@ -73,11 +73,11 @@ public class GroundDetector : MonoBehaviour
             bool isPassed = false;
             if (targetCol != null)
             {
-                targetColCenter = targetCol.transform.position.y + targetCol.offset.y;
+                targetColCenter = targetCol.transform.position.y + targetCol.offset.y * targetCol.transform.lossyScale.y;
 
                 //올라가면서 통과, 내려가면서 통과 체크
-                if (_col.transform.position.y > targetColCenter + _col.size.y / 2.0f + _size.y ||
-                    _col.transform.position.y + _col.size.y / 2.0f < targetColCenter - _col.size.y / 2.0f)
+                if (_col.transform.position.y > targetColCenter + _size.y ||
+                    _col.transform.position.y < targetColCenter - _size.y - _col.size.y)
                 {
                     isPassed = true;
                 }
