@@ -86,8 +86,8 @@ public class StateMachineManager : MonoBehaviour
 
     public void ResetVelocity()
     {
-        _move.x = 0;
-        _rb.velocity = new Vector2(0.0f, _rb.velocity.y);
+        _move.x = 0f;
+        _rb.velocity = Vector2.zero;
     }
     public void KnockBack()
     {

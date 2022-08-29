@@ -40,13 +40,13 @@ public class EdgeDetector : MonoBehaviour
 
     private void Update()
     {
-        topOn = Physics2D.OverlapCircle(new Vector2(transform.position.x + topX * _machineManager.direction,
-                                                    transform.position.y + topY),
-                                                    0.01f,
+        topOn = Physics2D.OverlapCircle(new Vector2(topX,
+                                                    topY),
+                                                    0.015f,
                                                     _groundLayer);
-        bottomOn = Physics2D.OverlapCircle(new Vector2(transform.position.x + bottomX * _machineManager.direction,
-                                                       transform.position.y + bottomY),
-                                                       0.01f,
+        bottomOn = Physics2D.OverlapCircle(new Vector2(bottomX,
+                                                       bottomY),
+                                                       0.015f,
                                                        _groundLayer);
         // ¶³¾îÁú ¶§ »ó½Â ¿§Áö
         if (bottomOn &&
@@ -54,6 +54,7 @@ public class EdgeDetector : MonoBehaviour
             _rb.velocity.y < 0)
         {
             detectingRisingEdge = true;
+            Debug.Log("»ó½Â ¿§Áö °ËÃâ");
         }
         else
         {
@@ -77,9 +78,9 @@ public class EdgeDetector : MonoBehaviour
         if (_rb == null) return;
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(new Vector3(topX, topY, 0f), 0.01f);
+        Gizmos.DrawSphere(new Vector3(topX, topY, 0f), 0.015f);
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(new Vector3(bottomX, bottomY, 0f), 0.01f);
+        Gizmos.DrawSphere(new Vector3(bottomX, bottomY, 0f), 0.015f);
     }
 }
 
