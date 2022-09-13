@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+
         //_controller = GetComponent<PlayerController>();
         _machineManager = GetComponent<StateMachineManager>();
         hp = _hpMax;

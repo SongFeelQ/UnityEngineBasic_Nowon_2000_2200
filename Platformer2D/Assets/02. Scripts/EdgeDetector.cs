@@ -10,8 +10,7 @@ public class EdgeDetector : MonoBehaviour
     }
     public Vector2 climbPos
     {
-        get => grabPos + new Vector2(_col.size.x / 2f * _col.gameObject.transform.lossyScale.x * _machineManager.direction,
-                                     0f);
+        get => grabPos + new Vector2(_col.size.x / 2f * _col.gameObject.transform.lossyScale.x * _machineManager.direction,0f);
     }
     public Vector2 grabPos
     {
@@ -20,9 +19,9 @@ public class EdgeDetector : MonoBehaviour
     }
 
     public float topX => _rb.position.x + (_col.size.x / 2f * _col.gameObject.transform.lossyScale.x + 0.02f) * _machineManager.direction;
-    public float topY => _rb.position.y + _col.size.y * _col.gameObject.transform.lossyScale.y + 0.02f;
+    public float topY => _rb.position.y + _col.size.y * _col.gameObject.transform.lossyScale.y + 0.025f;
     public float bottomX => _rb.position.x + (_col.size.x / 2f * _col.gameObject.transform.lossyScale.x + 0.02f ) * _machineManager.direction;
-    public float bottomY => _rb.position.y + _col.size.y * _col.gameObject.transform.lossyScale.y - 0.02f;
+    public float bottomY => _rb.position.y + _col.size.y * _col.gameObject.transform.lossyScale.y - 0.025f;
     public bool topOn, bottomOn;
     private bool detectingFallingEdge;
     private bool detectingRisingEdge;

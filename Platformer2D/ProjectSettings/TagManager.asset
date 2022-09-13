@@ -13,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ladder
   - Wall
   - Ground
   - 
   - 
-  - 
+  - Portal
   - 
   - Player
   - PlayerCollision
@@ -35,7 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - 3D
   - 
   m_SortingLayers:
   - name: Default

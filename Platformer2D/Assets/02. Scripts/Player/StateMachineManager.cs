@@ -18,6 +18,7 @@ public class StateMachineManager : MonoBehaviour
         Slide,
         Crouch,
         EdgeGrab,
+        Ladder,
         Hurt,
         Die,
     }
@@ -52,32 +53,44 @@ public class StateMachineManager : MonoBehaviour
     public bool isMovable { get; set; }
     public bool isDirectionChangable { get; set; }
 
-    private Vector2 _move;
+    public Vector2 move;
     [SerializeField] private float _moveSpeed = 1.0f;
 
     private AnimationManager _animationManager;
     private StateMachineBase _current;
     private Rigidbody2D _rb;
     private Player _player;
-
+    private LadderDetector _ladderDetector;
     [SerializeField] private Vector2 _attackHitCastCenter = new Vector2(0.1f, 0.15f);
     [SerializeField] private Vector2 _attackHitCastSize = new Vector2(0.5f, 0.5f);
     [SerializeField] private LayerMask _attackTargetLayer;
     [SerializeField] private Vector2 _knockBackForce = new Vector2(0.5f, 0.5f);
 
-    private float h => Input.GetAxis("Horizontal");
-    private float y => Input.GetAxis("Vertical");
+    public float h => Input.GetAxis("Horizontal");
+    public float y => Input.GetAxis("Vertical");
 
     // ==============================
     // Public Methods
     // ==============================
 
-    public void ChangeState(State newState)
+    public bool ChangeState(State newState)
     {
+        bool isChanged = false;
         if (state == newState ||
             _machines[newState].isExecuteOK() == false)
-            return;
+            return isChanged;
 
+        _machines[state].ForceStop();
+        _machines[newState].Execute();
+        _current = _machines[newState];
+        state = newState;
+        isChanged = true;
+
+        return isChanged;
+    }
+
+    public void ForceChangeState(State newState)
+    {
         _machines[state].ForceStop();
         _machines[newState].Execute();
         _current = _machines[newState];
@@ -86,7 +99,7 @@ public class StateMachineManager : MonoBehaviour
 
     public void ResetVelocity()
     {
-        _move.x = 0f;
+        move.x = 0f;
         _rb.velocity = Vector2.zero;
     }
     public void KnockBack()
@@ -99,6 +112,8 @@ public class StateMachineManager : MonoBehaviour
     // Public Methods
     // ==============================
 
+
+
     private void Awake()
     {
         StartCoroutine(E_Init());
@@ -110,6 +125,7 @@ public class StateMachineManager : MonoBehaviour
         _animationManager = GetComponent<AnimationManager>();
         _rb = GetComponent<Rigidbody2D>();
         _player = GetComponent<Player>();
+        _ladderDetector = GetComponent<LadderDetector>();
         yield return new WaitUntil(() => _animationManager.isReady);
 
         InitStateMachines();
@@ -180,9 +196,9 @@ public class StateMachineManager : MonoBehaviour
 
         if (isMovable)
         {
-            _move.x = h;
+            move.x = h;
 
-            if (Mathf.Abs(_move.x) > 0.0f)
+            if (Mathf.Abs(move.x) > 0.0f)
                 ChangeState(State.Move);
             else
                 ChangeState(State.Idle);
@@ -193,13 +209,41 @@ public class StateMachineManager : MonoBehaviour
             if (Input.GetKeyDown(shortKey))
             {
                 ChangeState(_states[shortKey]);
-                return;
+                {
+                    break;
+                }
             }
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            ChangeState(State.EdgeGrab);
+            if (_ladderDetector.isGoUpPossible &&
+                ChangeState(State.Ladder))
+            {
+                Debug.Log("MachineManager : Do Ladder go up");
+            }
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            if (ChangeState(State.EdgeGrab))
+            {
+                Debug.Log("MachineManager : Do Edge grab");
+            }
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            if (_ladderDetector.isGoDownPossible &&
+                ChangeState(State.Ladder))
+            {
+                Debug.Log("MachineManager : Do Ladder go down");
+            }
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            if (ChangeState(State.Crouch))
+            {
+                Debug.Log("MachineManager : Do crouch");
+            }
         }
 
         ChangeState(_current.UpdateState());
@@ -211,7 +255,7 @@ public class StateMachineManager : MonoBehaviour
             return;
 
         _current.FixedUpdateState();
-        transform.position += new Vector3(_move.x * _moveSpeed, _move.y, 0) * Time.fixedDeltaTime;
+        transform.position += new Vector3(move.x * _moveSpeed, move.y, 0) * Time.fixedDeltaTime;
     }
 
     

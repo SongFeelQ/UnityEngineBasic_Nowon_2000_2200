@@ -72,7 +72,7 @@ public class StateMachineEdgeGrab : StateMachineBase
             case EdgeType.EdgeClimb:
                 return EdgeClimbWorkflow();
             case EdgeType.EdgeSlide:
-                return EdgeIdleWorkflow();
+                return EdgeSlideWorkflow();
             default:
                 throw new System.Exception("Edge Grab 상태 문제 있음");
         }
@@ -88,9 +88,11 @@ public class StateMachineEdgeGrab : StateMachineBase
             case State.Prepare:
                 animationManager.Play("EdgeGrab");
                 _animationTimer = _edgeGrabAnimationTime;
+                _grabPos = _edgeDetector.grabPos;
+                _climbPos = _edgeDetector.climbPos;
                 state = State.OnAction;
                 break;
-            case State.Casting:                
+            case State.Casting:
                 break;
             case State.OnAction:
                 if (_animationTimer < 0)
@@ -134,6 +136,7 @@ public class StateMachineEdgeGrab : StateMachineBase
                     _edgeType = EdgeType.EdgeClimb;
                     state = State.Prepare;
                 }
+
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     _edgeType = EdgeType.EdgeSlide;
@@ -161,8 +164,6 @@ public class StateMachineEdgeGrab : StateMachineBase
             case State.Prepare:
                 animationManager.Play("EdgeClimb");
                 _animationTimer = _edgeClimbAnimationTime;
-                //_slerpCenter = new Vector2(_edgeDetector.climbPos.x * 2f - _rb.position.x,
-                //                           _rb.position.y * 2f - _edgeDetector.climbPos.y);
                 state = State.OnAction;
                 break;
             case State.Casting:
@@ -174,11 +175,11 @@ public class StateMachineEdgeGrab : StateMachineBase
                 }
                 else
                 {
-                    if (_rb.position.y < _edgeDetector.grabPos.y)
+                    if (_rb.position.y < _grabPos.y)
                     {
                         _rb.position += Vector2.up * Time.deltaTime / _edgeClimbAnimationTime;
                     }
-                    else if (Mathf.Abs(_rb.position.x - _edgeDetector.climbPos.x) > 0.01f)
+                    else if (Mathf.Abs(_rb.position.x - _climbPos.x) > 0.01f)
                     {
                         _rb.position += Vector2.right * manager.direction * Time.deltaTime / _edgeClimbAnimationTime;
                     }
@@ -221,6 +222,7 @@ public class StateMachineEdgeGrab : StateMachineBase
                 }
                 break;
             case State.Finish:
+                nextState = StateMachineManager.State.Idle;
                 break;
             case State.Error:
                 break;
