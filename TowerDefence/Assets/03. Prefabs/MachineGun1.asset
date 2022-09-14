@@ -16,4 +16,4 @@ MonoBehaviour:
   upgradeLevel: 1
   buildPrice: 100
   sellPrice: 60
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c78e07f3df5a7d241a326bb28e057154, type: 3}
