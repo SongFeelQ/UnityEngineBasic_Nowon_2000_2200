@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,20 @@ public class Player : MonoBehaviour
     public static Player instance;
 
     public int life;
-    public int money;
+    private int _money;
+    public int money
+    {
+        get
+        {
+            return _money;
+        }
+        set
+        {
+            OnMoneyChanged();
+            _money = value;
+        }
+    }
+    public event Action OnMoneyChanged;
 
     public void SetUp(int life, int money)
     {

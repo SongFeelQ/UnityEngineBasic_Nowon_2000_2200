@@ -7,10 +7,16 @@ public class Node : MonoBehaviour
     public bool IsTowerExist => _towerBuilt;
     private Tower _towerBuilt;
     private Renderer _renderer;
-
     private Color _originalColor;
     [SerializeField] private Color _buildAvailableColor;
     [SerializeField] private Color _buildNotAvailableColor;
+
+    public void Clear()
+    {
+        if (_towerBuilt != null)
+            Destroy(_towerBuilt.gameObject);
+        _towerBuilt = null;
+    }
 
     public bool TryBuildTowerHere(string towerName)
     {
@@ -18,22 +24,20 @@ public class Node : MonoBehaviour
 
         if (IsTowerExist)
         {
-            Debug.Log("해당 위치에 타워를 건설할 수 없습니다.");
+            Debug.Log("해당위치에 타워를 건설할 수 없습니다.");
             return false;
         }
 
         if (TowerAssets.instance.TryGetTower(towerName, out GameObject tower))
         {
-            
-
-            GameObject built = Instantiate(tower, 
-                                           transform.position + Vector3.up * 0.7f, 
-                                           Quaternion.identity, 
+            GameObject built = Instantiate(tower,
+                                           transform.position + Vector3.up * 0.5f,
+                                           Quaternion.identity,
                                            transform);
             _towerBuilt = built.GetComponent<Tower>();
+            _towerBuilt.node = this;
             isOK = true;
         }
-
         return isOK;
     }
 
@@ -50,7 +54,6 @@ public class Node : MonoBehaviour
         else
             _renderer.material.color = _buildAvailableColor;
 
-        _renderer.material.color = _buildAvailableColor;
         NodeManager.mouseOnNode = this;
     }
 
@@ -58,6 +61,4 @@ public class Node : MonoBehaviour
     {
         _renderer.material.color = _originalColor;
     }
-       
-    
 }
