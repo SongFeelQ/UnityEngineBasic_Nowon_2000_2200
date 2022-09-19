@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8199821723110151455}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FirePointL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8199821723335986883}
   - component: {fileID: -3633947275807258644}
   - component: {fileID: 580257662410769334}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MachineGun3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8199821724547523383}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FirePointR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +136,10 @@ PrefabInstance:
     - target: {fileID: 100018, guid: 7b4f0cb8fc3314059b88194196134996, type: 3}
       propertyPath: m_Name
       value: Turret_MachineGun_L03
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 7b4f0cb8fc3314059b88194196134996, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 7b4f0cb8fc3314059b88194196134996, type: 3}
       propertyPath: m_RootOrder
@@ -202,6 +206,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dca1d127a63854ace99cfd10bf9916cd, type: 3}
       propertyPath: m_Name
       value: Base_MachineGun_L03
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dca1d127a63854ace99cfd10bf9916cd, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dca1d127a63854ace99cfd10bf9916cd, type: 3}
       propertyPath: m_RootOrder

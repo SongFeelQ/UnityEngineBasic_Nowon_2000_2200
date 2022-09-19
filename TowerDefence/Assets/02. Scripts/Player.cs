@@ -1,13 +1,23 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Player : MonoBehaviour
 {
     public static Player instance;
-
-    public int life;
+    private int _life;
+    public int life
+    {
+        get
+        {
+            return life;
+        }
+        set
+        {
+            _life = value;
+            OnLifeChanged(_life);
+        }
+    }
     private int _money;
     public int money
     {
@@ -17,17 +27,19 @@ public class Player : MonoBehaviour
         }
         set
         {
-            OnMoneyChanged();
             _money = value;
+            OnMoneyChanged(_money);
         }
     }
-    public event Action OnMoneyChanged;
+    public event Action<int> OnLifeChanged;
+    public event Action<int> OnMoneyChanged;    
 
     public void SetUp(int life, int money)
     {
         this.life = life;
         this.money = money;
     }
+
     private void Awake()
     {
         instance = this;

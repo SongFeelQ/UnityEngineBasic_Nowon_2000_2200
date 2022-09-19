@@ -18,9 +18,10 @@ public class Node : MonoBehaviour
         _towerBuilt = null;
     }
 
-    public bool TryBuildTowerHere(string towerName)
+    public bool TryBuildTowerHere(string towerName, out Tower towerBuilt)
     {
         bool isOK = false;
+        towerBuilt = null;
 
         if (IsTowerExist)
         {
@@ -31,11 +32,12 @@ public class Node : MonoBehaviour
         if (TowerAssets.instance.TryGetTower(towerName, out GameObject tower))
         {
             GameObject built = Instantiate(tower,
-                                           transform.position + Vector3.up * 0.5f,
+                                           transform.position + Vector3.up * 0.7f,
                                            Quaternion.identity,
                                            transform);
             _towerBuilt = built.GetComponent<Tower>();
             _towerBuilt.node = this;
+            towerBuilt = _towerBuilt;
             isOK = true;
         }
         return isOK;

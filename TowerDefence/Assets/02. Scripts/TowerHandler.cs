@@ -33,22 +33,6 @@ public class TowerHandler : MonoBehaviour, IPointerClickHandler
             throw new System.Exception("고스트 타워 참조 실패");
         }
     }
-
-    public void BuildTower()
-    {
-        if (_selectedTowerInfo.buildPrice > Player.instance.money)
-        {
-            Debug.Log($"잔액이 부족합니다.");
-            return;
-        }
-
-        if (_hit.collider.GetComponent<Node>().TryBuildTowerHere(_selectedTowerInfo.name))
-        {
-            Debug.Log($"타워 건설 완료. {_selectedTowerInfo.name}");
-            Player.instance.money -= _selectedTowerInfo.buildPrice; // 금액 차감
-        }
-    }
-
     public void Clear()
     {
         if (_ghostTower != null)
@@ -110,6 +94,22 @@ public class TowerHandler : MonoBehaviour, IPointerClickHandler
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             Clear();
-        }        
+        }
     }
+
+    public void BuildTower()
+    {
+        if (_selectedTowerInfo.buildPrice > Player.instance.money)
+        {
+            Debug.Log($"잔액이 부족합니다.");
+            return;
+        }
+
+        if (_hit.collider.GetComponent<Node>().TryBuildTowerHere(_selectedTowerInfo.name, out Tower towerBuilt))
+        {
+            Debug.Log($"타워 건설 완료. {_selectedTowerInfo.name}, 노드위치 : {towerBuilt.node.name}");
+            Player.instance.money -= _selectedTowerInfo.buildPrice; // 금액 차감
+        }
+    }
+
 }

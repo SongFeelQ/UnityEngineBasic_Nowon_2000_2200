@@ -4,12 +4,50 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    // PascalCase
+    // camelCase
+    // _camelCase 
+
     public TowerInfo info;
-    [HideInInspector] public Node node;
+    public Node node;
+
+    protected Transform tr;
+    [SerializeField] protected Transform rotatePoint;
+    [SerializeField] protected float detectRange;
+    [SerializeField] private LayerMask _targetLayer;
+    protected Transform target;
+
+
+
+    private void Awake()
+    {
+        tr = GetComponent<Transform>();
+    }
+
+    private void Update()
+    {
+        Collider[] cols = Physics.OverlapSphere(tr.position, detectRange, _targetLayer);
+
+        if (cols.Length > 0)
+        {
+            target = cols[0].transform;
+            rotatePoint.LookAt(target);
+        }
+        else
+        {
+            target = null;
+        }
+    }
 
     private void OnMouseDown()
     {
         if (TowerHandler.instance.gameObject.activeSelf == false)
             TowerUI.instance.SetUp(this);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 }

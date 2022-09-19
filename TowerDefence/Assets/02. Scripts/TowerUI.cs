@@ -12,8 +12,8 @@ public class TowerUI : MonoBehaviour
     [SerializeField] private Button _sellButton;
     [SerializeField] private TMP_Text _upgradeCostText;
     [SerializeField] private Vector3 _offset = Vector3.up * 3f;
-    private int _upgradeCost;
 
+    private int _upgradeCost;
     private bool _upgradeAffordable => _upgradeCost <= Player.instance.money;
 
     public void SetUp(Tower tower)
@@ -26,15 +26,20 @@ public class TowerUI : MonoBehaviour
             _upgradeButton.gameObject.SetActive(true);
             _upgradeCost = nextLevelTower.info.buildPrice;
             _upgradeCostText.text = nextLevelTower.info.buildPrice.ToString();
-            RefreshUpgradeCostTextColor();
+            if (_upgradeAffordable)
+                _upgradeCostText.color = Color.black;
+            else
+                _upgradeCostText.color = Color.red;
 
+            _upgradeButton.onClick.RemoveAllListeners();
             _upgradeButton.onClick.AddListener(() => {
+
                 if (_upgradeAffordable)
                 {
-                    Upgrade(tower, nextLevelTower);
-                    SetUp(nextLevelTower);
+                    Player.instance.money -= _upgradeCost;
+                    SetUp(Upgrade(tower, nextLevelTower));
                 }
-            });            
+            });
         }
         else
         {
@@ -53,19 +58,23 @@ public class TowerUI : MonoBehaviour
         transform.position = tower.transform.position + _offset;
     }
 
-    public void Upgrade(Tower before, Tower after)
-    {
-        if (before == null)
-            return;
-
-        Node node = before.node;
-        node.Clear();
-        node.TryBuildTowerHere($"{after.info.type}{after.info.upgradeLevel}");
-    }
-
     public void Clear()
     {
+        _upgradeCost = -1;
+    }
 
+    public Tower Upgrade(Tower before, Tower after)
+    {
+        Tower towerBuilt = null;
+
+        if (before != null)
+        {
+            Node node = before.node;
+            node.Clear();
+            node.TryBuildTowerHere($"{after.info.type}{after.info.upgradeLevel}", out towerBuilt);
+        }
+
+        return towerBuilt;
     }
 
     public void Sell()
@@ -89,11 +98,8 @@ public class TowerUI : MonoBehaviour
         Clear();
     }
 
-    private void RefreshUpgradeCostTextColor()
+    private void RefreshUpgradeCostTextColor(int money)
     {
-        if (_upgradeAffordable)
-            _upgradeCostText.color = Color.red;
-        else
-            _upgradeCostText.color = Color.black;
+        
     }
 }
