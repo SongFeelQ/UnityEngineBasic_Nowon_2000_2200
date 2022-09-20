@@ -20,6 +20,7 @@ public class GameInfoPanel : MonoBehaviour
     {
         yield return new WaitUntil(() => Player.instance);
         Player.instance.OnMoneyChanged += SetMoneyText;
+        Player.instance.OnLifeChanged += SetLifeText;
     }
     private void SetLifeText(int life)
     {

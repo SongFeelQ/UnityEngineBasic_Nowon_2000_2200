@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3098153549805783734}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.55, z: 1.15}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.15, z: 1.1500001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3098153549854232837}
-  m_RootOrder: 2
+  m_Father: {fileID: 3098153549741942062}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3098153549854232835
 GameObject:
@@ -40,8 +40,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3098153549854232837}
-  - component: {fileID: 3098153549854232836}
   - component: {fileID: 6624442483202025867}
+  - component: {fileID: -7207296668035608588}
   m_Layer: 12
   m_Name: MachineGun1
   m_TagString: Untagged
@@ -63,29 +63,9 @@ Transform:
   m_Children:
   - {fileID: 3098153551126930662}
   - {fileID: 3098153549741942062}
-  - {fileID: 3098153549805783735}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3098153549854232836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098153549854232835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db513d29bd7cf194ea6368402c28bee5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: {fileID: 11400000, guid: 1c92ba188a608c6458edd0b0de894032, type: 2}
-  node: {fileID: 0}
-  rotatePoint: {fileID: 0}
-  detectRange: 2.5
-  _targetLayer:
-    serializedVersion: 2
-    m_Bits: 32768
 --- !u!135 &6624442483202025867
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -99,6 +79,30 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.8
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!114 &-7207296668035608588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3098153549854232835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a786bd7e1e0c44f9326eba23b3fa7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 11400000, guid: 1c92ba188a608c6458edd0b0de894032, type: 2}
+  node: {fileID: 0}
+  rotatePoint: {fileID: 3098153549741942062}
+  detectRange: 2.5
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 32768
+  _bulletPrefab: {fileID: 360960988811399322, guid: 1eac35db4083a4841a12752ca63b0353, type: 3}
+  _firePoints:
+  - {fileID: 3098153549805783735}
+  _damage: 10
+  _reloadTime: 0.5
 --- !u!1001 &3098153549742079918
 PrefabInstance:
   m_ObjectHideFlags: 0

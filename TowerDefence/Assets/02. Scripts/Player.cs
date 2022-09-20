@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
 public class Player : MonoBehaviour
 {
     public static Player instance;
+
     private int _life;
     public int life
     {
         get
         {
-            return life;
+            return _life;
         }
         set
         {
@@ -31,8 +33,8 @@ public class Player : MonoBehaviour
             OnMoneyChanged(_money);
         }
     }
+    public event Action<int> OnMoneyChanged;
     public event Action<int> OnLifeChanged;
-    public event Action<int> OnMoneyChanged;    
 
     public void SetUp(int life, int money)
     {

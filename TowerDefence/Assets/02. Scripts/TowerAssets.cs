@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class TowerAssets : MonoBehaviour
 {
-    // Start is called before the first frame update
     private static TowerAssets _instance;
-
     public static TowerAssets instance
     {
         get
