@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 25372998}
   - component: {fileID: 25372997}
   m_Layer: 0
-  m_Name: EnemyPath (53)
+  m_Name: EnemyPath_52
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 51
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &32633450
 GameObject:
@@ -345,9 +345,9 @@ GameObject:
   - component: {fileID: 32633452}
   - component: {fileID: 32633451}
   m_Layer: 0
-  m_Name: EnemyPath (9)
+  m_Name: EnemyPath_09
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 32742735}
   - component: {fileID: 32742734}
   m_Layer: 0
-  m_Name: EnemyPath (7)
+  m_Name: EnemyPath_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3052,9 +3052,9 @@ GameObject:
   - component: {fileID: 260213813}
   - component: {fileID: 260213812}
   m_Layer: 0
-  m_Name: EnemyPath (1)
+  m_Name: EnemyPath_01
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3709,9 +3709,9 @@ GameObject:
   - component: {fileID: 303540851}
   - component: {fileID: 303540850}
   m_Layer: 0
-  m_Name: EnemyPath (36)
+  m_Name: EnemyPath_35
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3791,7 +3791,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 34
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &303852413
 GameObject:
@@ -3918,7 +3918,7 @@ GameObject:
   - component: {fileID: 311859566}
   - component: {fileID: 311859565}
   m_Layer: 0
-  m_Name: EnemyPath (44)
+  m_Name: EnemyPath_43
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4000,7 +4000,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 42
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &321794005
 GameObject:
@@ -4363,9 +4363,9 @@ GameObject:
   - component: {fileID: 357413084}
   - component: {fileID: 357413083}
   m_Layer: 0
-  m_Name: EnemyPath
+  m_Name: EnemyPath_00
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4460,7 +4460,7 @@ GameObject:
   - component: {fileID: 361490481}
   - component: {fileID: 361490480}
   m_Layer: 0
-  m_Name: EnemyPath (52)
+  m_Name: EnemyPath_51
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4542,7 +4542,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 50
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &376395258
 GameObject:
@@ -4781,7 +4781,7 @@ GameObject:
   - component: {fileID: 401636760}
   - component: {fileID: 401636759}
   m_Layer: 0
-  m_Name: EnemyPath (56)
+  m_Name: EnemyPath_55
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4863,7 +4863,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 54
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &403527310
 GameObject:
@@ -5550,7 +5550,7 @@ GameObject:
   - component: {fileID: 435892928}
   - component: {fileID: 435892927}
   m_Layer: 0
-  m_Name: EnemyPath (48)
+  m_Name: EnemyPath_47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5632,7 +5632,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 46
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &436365215
 GameObject:
@@ -6310,7 +6310,7 @@ GameObject:
   - component: {fileID: 471416540}
   - component: {fileID: 471416539}
   m_Layer: 0
-  m_Name: EnemyPath (18)
+  m_Name: EnemyPath_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6407,9 +6407,9 @@ GameObject:
   - component: {fileID: 472892557}
   - component: {fileID: 472892556}
   m_Layer: 0
-  m_Name: EnemyPath (26)
+  m_Name: EnemyPath_25
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8655,7 +8655,7 @@ GameObject:
   - component: {fileID: 618008761}
   - component: {fileID: 618008760}
   m_Layer: 0
-  m_Name: EnemyPath (8)
+  m_Name: EnemyPath_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9088,9 +9088,9 @@ GameObject:
   - component: {fileID: 639680621}
   - component: {fileID: 639680620}
   m_Layer: 0
-  m_Name: EnemyPath (22)
+  m_Name: EnemyPath_21
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9185,7 +9185,7 @@ GameObject:
   - component: {fileID: 661087914}
   - component: {fileID: 661087913}
   m_Layer: 0
-  m_Name: EnemyPath (61)
+  m_Name: EnemyPath_60
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9267,7 +9267,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 59
+  m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &674130195
 GameObject:
@@ -9495,7 +9495,7 @@ GameObject:
   - component: {fileID: 689172939}
   - component: {fileID: 689172938}
   m_Layer: 0
-  m_Name: EnemyPath (13)
+  m_Name: EnemyPath_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10280,9 +10280,9 @@ GameObject:
   - component: {fileID: 765454465}
   - component: {fileID: 765454464}
   m_Layer: 0
-  m_Name: EnemyPath (66)
+  m_Name: EnemyPath_32
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10299,7 +10299,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 64
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &765454464
 BoxCollider:
@@ -10377,9 +10377,9 @@ GameObject:
   - component: {fileID: 773616395}
   - component: {fileID: 773616394}
   m_Layer: 0
-  m_Name: EnemyPath (15)
+  m_Name: EnemyPath_14
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10474,9 +10474,9 @@ GameObject:
   - component: {fileID: 775979560}
   - component: {fileID: 775979559}
   m_Layer: 0
-  m_Name: EnemyPath (27)
+  m_Name: EnemyPath_26
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10760,7 +10760,7 @@ GameObject:
   - component: {fileID: 802908196}
   - component: {fileID: 802908195}
   m_Layer: 0
-  m_Name: EnemyPath (57)
+  m_Name: EnemyPath_56
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10842,7 +10842,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 55
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &809800615
 GameObject:
@@ -11529,7 +11529,7 @@ GameObject:
   - component: {fileID: 849528190}
   - component: {fileID: 849528189}
   m_Layer: 0
-  m_Name: EnemyPath (20)
+  m_Name: EnemyPath_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11626,7 +11626,7 @@ GameObject:
   - component: {fileID: 851638277}
   - component: {fileID: 851638276}
   m_Layer: 0
-  m_Name: EnemyPath (12)
+  m_Name: EnemyPath_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11724,6 +11724,7 @@ GameObject:
   - component: {fileID: 860860484}
   - component: {fileID: 860860489}
   - component: {fileID: 860860488}
+  - component: {fileID: 860860490}
   m_Layer: 15
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -11802,8 +11803,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860860483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 5}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0.25, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 326905547}
@@ -11840,6 +11841,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpMax: 100
   _hpBar: {fileID: 868308842}
+  _uiCanvas: {fileID: 326905550}
+--- !u!114 &860860490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860860483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4db487408401d346ab5196989f11ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
 --- !u!1 &865409758
 GameObject:
   m_ObjectHideFlags: 0
@@ -11853,7 +11868,7 @@ GameObject:
   - component: {fileID: 865409760}
   - component: {fileID: 865409759}
   m_Layer: 0
-  m_Name: EnemyPath (58)
+  m_Name: EnemyPath_57
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11935,7 +11950,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 56
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &866433963
 GameObject:
@@ -12264,9 +12279,9 @@ GameObject:
   - component: {fileID: 882181400}
   - component: {fileID: 882181399}
   m_Layer: 0
-  m_Name: EnemyPath (28)
+  m_Name: EnemyPath_27
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12616,7 +12631,7 @@ GameObject:
   - component: {fileID: 937083107}
   - component: {fileID: 937083106}
   m_Layer: 0
-  m_Name: EnemyPath (10)
+  m_Name: EnemyPath_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13021,7 +13036,7 @@ GameObject:
   - component: {fileID: 979925661}
   - component: {fileID: 979925660}
   m_Layer: 0
-  m_Name: EnemyPath (59)
+  m_Name: EnemyPath_58
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13103,7 +13118,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 57
+  m_RootOrder: 59
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &982458543
 GameObject:
@@ -13454,7 +13469,7 @@ GameObject:
   - component: {fileID: 1016758972}
   - component: {fileID: 1016758971}
   m_Layer: 0
-  m_Name: EnemyPath (19)
+  m_Name: EnemyPath_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14447,9 +14462,9 @@ GameObject:
   - component: {fileID: 1089361517}
   - component: {fileID: 1089361516}
   m_Layer: 0
-  m_Name: EnemyPath (30)
+  m_Name: EnemyPath_29
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14582,7 +14597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.43867922, b: 0.43867922, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14979,7 +14994,7 @@ GameObject:
   - component: {fileID: 1144438205}
   - component: {fileID: 1144438204}
   m_Layer: 0
-  m_Name: EnemyPath (47)
+  m_Name: EnemyPath_46
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15061,7 +15076,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 45
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1154047973
 GameObject:
@@ -15076,9 +15091,9 @@ GameObject:
   - component: {fileID: 1154047975}
   - component: {fileID: 1154047974}
   m_Layer: 0
-  m_Name: EnemyPath (24)
+  m_Name: EnemyPath_22
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -15285,7 +15300,7 @@ GameObject:
   - component: {fileID: 1162179324}
   - component: {fileID: 1162179323}
   m_Layer: 0
-  m_Name: EnemyPath (29)
+  m_Name: EnemyPath_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15576,7 +15591,7 @@ GameObject:
   - component: {fileID: 1182512688}
   - component: {fileID: 1182512687}
   m_Layer: 0
-  m_Name: EnemyPath (16)
+  m_Name: EnemyPath_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16032,9 +16047,9 @@ GameObject:
   - component: {fileID: 1238299872}
   - component: {fileID: 1238299871}
   m_Layer: 0
-  m_Name: EnemyPath (65)
+  m_Name: EnemyPath_30
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -16051,7 +16066,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 63
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1238299871
 BoxCollider:
@@ -16129,7 +16144,7 @@ GameObject:
   - component: {fileID: 1239870192}
   - component: {fileID: 1239870191}
   m_Layer: 0
-  m_Name: EnemyPath (21)
+  m_Name: EnemyPath_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16487,7 +16502,7 @@ GameObject:
   - component: {fileID: 1269320605}
   - component: {fileID: 1269320604}
   m_Layer: 0
-  m_Name: EnemyPath (62)
+  m_Name: EnemyPath_61
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16569,7 +16584,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 60
+  m_RootOrder: 62
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1269480262
 GameObject:
@@ -16584,7 +16599,7 @@ GameObject:
   - component: {fileID: 1269480264}
   - component: {fileID: 1269480263}
   m_Layer: 0
-  m_Name: EnemyPath (50)
+  m_Name: EnemyPath_49
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16666,7 +16681,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 48
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276859138
 GameObject:
@@ -17040,7 +17055,7 @@ GameObject:
   - component: {fileID: 1286603785}
   - component: {fileID: 1286603784}
   m_Layer: 0
-  m_Name: EnemyPath (39)
+  m_Name: EnemyPath_38
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17122,7 +17137,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 37
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287754138
 GameObject:
@@ -17473,9 +17488,9 @@ GameObject:
   - component: {fileID: 1310829336}
   - component: {fileID: 1310829335}
   m_Layer: 0
-  m_Name: EnemyPath (40)
+  m_Name: EnemyPath_39
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17555,7 +17570,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 38
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1312525317
 GameObject:
@@ -18041,7 +18056,7 @@ GameObject:
   - component: {fileID: 1349631032}
   - component: {fileID: 1349631031}
   m_Layer: 0
-  m_Name: EnemyPath (51)
+  m_Name: EnemyPath_50
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18123,7 +18138,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 49
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1352607800
 GameObject:
@@ -18250,9 +18265,9 @@ GameObject:
   - component: {fileID: 1361957467}
   - component: {fileID: 1361957466}
   m_Layer: 0
-  m_Name: EnemyPath (37)
+  m_Name: EnemyPath_36
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -18332,7 +18347,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 35
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1387802439
 GameObject:
@@ -18347,7 +18362,7 @@ GameObject:
   - component: {fileID: 1387802441}
   - component: {fileID: 1387802440}
   m_Layer: 0
-  m_Name: EnemyPath (45)
+  m_Name: EnemyPath_44
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18429,7 +18444,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 43
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1392997057
 GameObject:
@@ -18668,9 +18683,9 @@ GameObject:
   - component: {fileID: 1408983680}
   - component: {fileID: 1408983679}
   m_Layer: 0
-  m_Name: EnemyPath (49)
+  m_Name: EnemyPath_48
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -18750,7 +18765,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 47
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1421234739
 GameObject:
@@ -19033,7 +19048,7 @@ GameObject:
   - component: {fileID: 1468916686}
   - component: {fileID: 1468916685}
   m_Layer: 0
-  m_Name: EnemyPath (60)
+  m_Name: EnemyPath_59
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19115,7 +19130,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 58
+  m_RootOrder: 60
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1470402971
 GameObject:
@@ -19434,7 +19449,7 @@ GameObject:
   - component: {fileID: 1524129522}
   - component: {fileID: 1524129521}
   m_Layer: 0
-  m_Name: EnemyPath (46)
+  m_Name: EnemyPath_45
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19516,7 +19531,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 44
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1546671435
 GameObject:
@@ -19979,7 +19994,7 @@ GameObject:
   - component: {fileID: 1581978634}
   - component: {fileID: 1581978633}
   m_Layer: 0
-  m_Name: EnemyPath (35)
+  m_Name: EnemyPath_34
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20061,7 +20076,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 33
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1586062450
 GameObject:
@@ -20412,9 +20427,9 @@ GameObject:
   - component: {fileID: 1610744597}
   - component: {fileID: 1610744596}
   m_Layer: 0
-  m_Name: EnemyPath (64)
+  m_Name: EnemyPath_63
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -20494,7 +20509,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 62
+  m_RootOrder: 64
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1613863535
 GameObject:
@@ -20621,7 +20636,7 @@ GameObject:
   - component: {fileID: 1615829084}
   - component: {fileID: 1615829083}
   m_Layer: 0
-  m_Name: EnemyPath (6)
+  m_Name: EnemyPath_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21033,9 +21048,9 @@ GameObject:
   - component: {fileID: 1645339439}
   - component: {fileID: 1645339438}
   m_Layer: 0
-  m_Name: EnemyPath (63)
+  m_Name: EnemyPath_62
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -21115,7 +21130,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 61
+  m_RootOrder: 63
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658193453
 GameObject:
@@ -21130,7 +21145,7 @@ GameObject:
   - component: {fileID: 1658193455}
   - component: {fileID: 1658193454}
   m_Layer: 0
-  m_Name: EnemyPath (17)
+  m_Name: EnemyPath_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21339,7 +21354,7 @@ GameObject:
   - component: {fileID: 1664890338}
   - component: {fileID: 1664890337}
   m_Layer: 0
-  m_Name: EnemyPath (43)
+  m_Name: EnemyPath_42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21421,7 +21436,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 41
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1682259587
 GameObject:
@@ -22556,7 +22571,7 @@ GameObject:
   - component: {fileID: 1734361510}
   - component: {fileID: 1734361509}
   m_Layer: 0
-  m_Name: EnemyPath (3)
+  m_Name: EnemyPath_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22653,9 +22668,9 @@ GameObject:
   - component: {fileID: 1750729354}
   - component: {fileID: 1750729353}
   m_Layer: 0
-  m_Name: EnemyPath (41)
+  m_Name: EnemyPath_40
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -22735,7 +22750,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 39
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1768414499
 GameObject:
@@ -22862,9 +22877,9 @@ GameObject:
   - component: {fileID: 1773849340}
   - component: {fileID: 1773849339}
   m_Layer: 0
-  m_Name: EnemyPath (34)
+  m_Name: EnemyPath_33
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -22944,7 +22959,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 32
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1776014248
 GameObject:
@@ -22959,9 +22974,9 @@ GameObject:
   - component: {fileID: 1776014250}
   - component: {fileID: 1776014249}
   m_Layer: 0
-  m_Name: EnemyPath (38)
+  m_Name: EnemyPath_37
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23041,7 +23056,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 36
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788717868
 GameObject:
@@ -24042,9 +24057,9 @@ GameObject:
   - component: {fileID: 1848811961}
   - component: {fileID: 1848811960}
   m_Layer: 0
-  m_Name: EnemyPath (23)
+  m_Name: EnemyPath_23
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24139,9 +24154,9 @@ GameObject:
   - component: {fileID: 1848996179}
   - component: {fileID: 1848996178}
   m_Layer: 0
-  m_Name: EnemyPath (55)
+  m_Name: EnemyPath_54
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24221,7 +24236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 53
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1852282743
 GameObject:
@@ -24460,7 +24475,7 @@ GameObject:
   - component: {fileID: 1856193693}
   - component: {fileID: 1856193692}
   m_Layer: 0
-  m_Name: EnemyPath (5)
+  m_Name: EnemyPath_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25341,7 +25356,7 @@ GameObject:
   - component: {fileID: 1913890648}
   - component: {fileID: 1913890647}
   m_Layer: 0
-  m_Name: EnemyPath (25)
+  m_Name: EnemyPath_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26118,7 +26133,7 @@ GameObject:
   - component: {fileID: 1978516901}
   - component: {fileID: 1978516900}
   m_Layer: 0
-  m_Name: EnemyPath (54)
+  m_Name: EnemyPath_53
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26200,7 +26215,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 52
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1978852278
 GameObject:
@@ -26771,6 +26786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016947331}
+  - component: {fileID: 2016947332}
   m_Layer: 0
   m_Name: EnemyPaths
   m_TagString: Untagged
@@ -26821,7 +26837,9 @@ Transform:
   - {fileID: 882181402}
   - {fileID: 1162179326}
   - {fileID: 1089361519}
+  - {fileID: 1238299870}
   - {fileID: 2043747854}
+  - {fileID: 765454463}
   - {fileID: 1773849342}
   - {fileID: 1581978636}
   - {fileID: 303540853}
@@ -26853,11 +26871,46 @@ Transform:
   - {fileID: 1269320607}
   - {fileID: 1645339441}
   - {fileID: 1610744599}
-  - {fileID: 1238299870}
-  - {fileID: 765454463}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2016947332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016947330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0463b02dbe9654ea2240e1d1965435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 357413086}
+  - {fileID: 260213815}
+  - {fileID: 32633454}
+  - {fileID: 773616397}
+  - {fileID: 639680623}
+  - {fileID: 1154047977}
+  - {fileID: 1848811963}
+  - {fileID: 472892559}
+  - {fileID: 775979562}
+  - {fileID: 882181402}
+  - {fileID: 1089361519}
+  - {fileID: 1238299870}
+  - {fileID: 765454463}
+  - {fileID: 1773849342}
+  - {fileID: 303540853}
+  - {fileID: 1361957469}
+  - {fileID: 1776014252}
+  - {fileID: 1310829338}
+  - {fileID: 1750729356}
+  - {fileID: 2072762541}
+  - {fileID: 1408983682}
+  - {fileID: 1848996181}
+  - {fileID: 1645339441}
+  - {fileID: 1610744599}
 --- !u!1 &2027568852
 GameObject:
   m_ObjectHideFlags: 0
@@ -26983,7 +27036,7 @@ GameObject:
   - component: {fileID: 2043747852}
   - component: {fileID: 2043747851}
   m_Layer: 0
-  m_Name: EnemyPath (32)
+  m_Name: EnemyPath_31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27065,7 +27118,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2043987915
 GameObject:
@@ -27327,7 +27380,7 @@ GameObject:
   - component: {fileID: 2053419602}
   - component: {fileID: 2053419601}
   m_Layer: 0
-  m_Name: EnemyPath (4)
+  m_Name: EnemyPath_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27836,7 +27889,7 @@ GameObject:
   - component: {fileID: 2071042140}
   - component: {fileID: 2071042139}
   m_Layer: 0
-  m_Name: EnemyPath (2)
+  m_Name: EnemyPath_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27933,9 +27986,9 @@ GameObject:
   - component: {fileID: 2072762539}
   - component: {fileID: 2072762538}
   m_Layer: 0
-  m_Name: EnemyPath (42)
+  m_Name: EnemyPath_41
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -28015,7 +28068,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2016947331}
-  m_RootOrder: 40
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074507262
 GameObject:
@@ -28030,7 +28083,7 @@ GameObject:
   - component: {fileID: 2074507264}
   - component: {fileID: 2074507263}
   m_Layer: 0
-  m_Name: EnemyPath (14)
+  m_Name: EnemyPath_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28687,7 +28740,7 @@ GameObject:
   - component: {fileID: 2139832683}
   - component: {fileID: 2139832682}
   m_Layer: 0
-  m_Name: EnemyPath (11)
+  m_Name: EnemyPath_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

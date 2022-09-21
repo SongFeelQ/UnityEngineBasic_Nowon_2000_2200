@@ -46,7 +46,8 @@ public class TowerUI : MonoBehaviour
             _upgradeButton.gameObject.SetActive(false);
         }
 
-        // Sell 버튼 세팅
+        // Sell 버튼 
+        _sellButton.onClick.RemoveAllListeners();
         _sellButton.onClick.AddListener(() =>
         {
             Player.instance.money += tower.info.sellPrice;

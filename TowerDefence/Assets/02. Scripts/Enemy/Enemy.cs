@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
 
     public int hpMax;
     [SerializeField] private Slider _hpBar;
+    [SerializeField] private Canvas _uiCanvas;
 
     private void Awake()
     {
