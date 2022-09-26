@@ -25,8 +25,15 @@ public class Pathfinder : MonoBehaviour
 
     enum Type
     {
+        None,
         Path,
         Obstacle,
+    }
+
+    public enum FindingOptions
+    {
+        BFS,
+        DFS,
     }
 
     struct NodePair
@@ -45,10 +52,11 @@ public class Pathfinder : MonoBehaviour
     private bool[,] _visited;
     private int[,] _direction = new int[2, 4]
     {
-        { -1,  0,  1,  0},
-        {  0,  1,  0, -1}
+        { -1,  0,  1,  0 },
+        {  0,  1,  0, -1 }
     };
-    private List<List<Coord>> _pathList = new List<List<Coord>>(); 
+    private List<List<Coord>> _pathList = new List<List<Coord>>();
+    private List<Coord> _tmpPathForDFS = new List<Coord>();
 
     public void SetNodeMap(List<Transform> pathNodes, List<Transform> obstacleNodes)
     {
@@ -61,6 +69,8 @@ public class Pathfinder : MonoBehaviour
         IOrderedEnumerable<Transform> nodeFiltered = nodes.OrderBy(node => node.position.x + node.position.z);
         _leftBottom = nodeFiltered.First();
         _rightTop = nodeFiltered.Last();
+
+
 
         _map = new NodePair[(int)(_height / _nodeTerm) + 1, (int)(_width / _nodeTerm) + 1];
         _visited = new bool[_map.GetLength(0), _map.GetLength(1)];
@@ -90,18 +100,52 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    private bool BFS(NodePair start, NodePair end)
+    public void FindOptimizedPath(Transform startNode, Transform endNode, FindingOptions option)
     {
-        // 시작점과 끝점이 지날 수 있는 곳인지 체크
-        if (start.type != Type.Path || end.type != Type.Path)
-            return false;
+        bool found = false;
 
+        switch (option)
+        {
+            case FindingOptions.BFS:
+                found = BFS(start: FindNode(startNode).coord,
+                            end: FindNode(endNode).coord);
+                break;
+            case FindingOptions.DFS:
+                found = DFS(start: FindNode(startNode).coord,
+                            end: FindNode(endNode).coord);
+                break;
+            default:
+                break;
+        }
+
+        if (found)
+        {
+            List<List<Transform>> nodePathList = new List<List<Transform>>();
+
+            for (int i = 0; i < _pathList.Count; i++)
+            {
+                string pathString = "";
+                nodePathList.Add(new List<Transform>());
+
+                for (int j = 0; j < _pathList[i].Count; j++)
+                {
+                    nodePathList[i].Add(GetNode(_pathList[i][j]));
+                    pathString += $" -> {nodePathList[i][j].name}";
+                }
+                Debug.Log($"[Pathfinder] : 최단 경로 탐색 됨. {pathString}");
+            }
+        }
+
+    }
+
+    private bool BFS(Coord start, Coord end)
+    {
         bool isFinished = false;
         List<KeyValuePair<Coord, Coord>> parentsPairs = new List<KeyValuePair<Coord, Coord>>();
         Queue<Coord> queue = new Queue<Coord>();
-        queue.Enqueue(start.coord);
-        parentsPairs.Add(new KeyValuePair<Coord, Coord>(Coord.error, start.coord));
-        _visited[start.coord.y, start.coord.x] = true;
+        queue.Enqueue(start);
+        parentsPairs.Add(new KeyValuePair<Coord, Coord>(Coord.error, start));
+        _visited[start.y, start.x] = true;
 
         int searchCount = 0;
         while (queue.Count > 0 && 
@@ -111,11 +155,11 @@ public class Pathfinder : MonoBehaviour
 
             for (int i = 0; i < _direction.GetLength(1); i++)
             {
-                Coord next = new Coord(parent.y + _direction[0, i], parent.x + +_direction[1, i]);
+                Coord next = new Coord(parent.y + _direction[0, i], parent.x + _direction[1, i]);
 
                 // 탐색 위치가 맵을 벗어나는지
-                if (next.y < 0 || next.y >= _map.GetLength(0) ||
-                    next.x < 0 || next.x >= _map.GetLength(1))
+                if ((next.y < 0 || next.y >= _map.GetLength(0) ||
+                     next.x < 0 || next.x >= _map.GetLength(1)))
                     continue;
 
                 // 탐색 위치가 장애물일 경우
@@ -132,11 +176,10 @@ public class Pathfinder : MonoBehaviour
                 _visited[next.y, next.x] = true;
 
                 // 도착 체크
-                if (next.y == end.coord.y &&
-                    next.x == end.coord.x)
+                if (next.y == end.y && next.x == end.x)
                 {
                     isFinished = true;
-                    _pathList.Add(CalcPath(parentsPairs, start.coord, end.coord));
+                    _pathList.Add(CalcPath(parentsPairs, start, end));
                 }
                 else
                 {
@@ -148,18 +191,58 @@ public class Pathfinder : MonoBehaviour
         return isFinished;
     }
 
+    private bool DFS(Coord start, Coord end)
+    {
+        _visited[start.y, start.x] = true;
+        _tmpPathForDFS.Add(start);
+
+        Coord next;
+        for (int i = 0; i < _direction.GetLength(1); i++)
+        {
+            next.y = start.y + _direction[0, i];
+            next.x = start.x + _direction[1, i];
+
+            // 탐색 위치가 맵을 벗어나는지
+            if ((next.y < 0 || next.y >= _map.GetLength(0)) ||
+                (next.x < 0 || next.x >= _map.GetLength(1)))
+                continue;
+
+            // 탐색 위치가 장애물일 경우
+            if (_map[next.y, next.x].type == Type.Obstacle)
+                continue;
+
+            // 방문 여부
+            if (_visited[next.y, next.x] == true)
+                continue;
+
+            if (next.y == end.y && next.x == end.x)
+            {
+                _pathList.Add(_tmpPathForDFS);
+                return true;
+            }
+
+            return DFS(next, end);
+        }
+
+        return false;
+    }
+
     private List<Coord> CalcPath(List<KeyValuePair<Coord, Coord>> parentPairs, Coord start, Coord end)
     {
         List<Coord> path = new List<Coord>();
-        Coord tmpCoord = parentPairs.Last().Value;
-        path.Add(tmpCoord);
+
+        Coord coord = parentPairs.Last().Value; // 제일 마지막 노드
+        path.Add(coord);
 
         int index = parentPairs.Count - 1;
         while (index > 0 &&
                parentPairs[index].Key != start)
         {
-
+            path.Add(parentPairs[index].Key);
+            index = parentPairs.FindLastIndex(pair => pair.Value == parentPairs[index].Key);
         }
+
+        path.Reverse();
 
         return path;
     }
@@ -169,6 +252,22 @@ public class Pathfinder : MonoBehaviour
     {
         return new Coord((int)((node.position.z - _leftBottom.position.z) / _nodeTerm),
                          (int)((node.position.x - _leftBottom.position.x) / _nodeTerm));
+    }
+
+    private NodePair FindNode(Transform node)
+    {
+        Coord coord = TransformToCoord(node);
+        for (int i = 0; i < _map.GetLength(1); i++)
+            for (int j = 0; j < _map.GetLength(0); j++)
+                if (_map[j, i].coord == coord)
+                    return _map[j, i];
+
+        return new NodePair() { coord = Coord.error, node = null, type = Type.None };
+    }
+
+    private Transform GetNode(Coord coord)
+    {
+        return _map[coord.y, coord.x].node;
     }
 
     private void Start()
