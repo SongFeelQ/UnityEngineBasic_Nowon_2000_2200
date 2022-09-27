@@ -34,7 +34,9 @@ public class Pathfinder : MonoBehaviour
     {
         BFS,
         DFS,
+        FixedWayPoints,
     }
+    [SerializeField] private FindingOptions _option;
 
     struct NodePair
     {
@@ -55,8 +57,8 @@ public class Pathfinder : MonoBehaviour
         { -1,  0,  1,  0 },
         {  0,  1,  0, -1 }
     };
-    private List<List<Coord>> _pathList = new List<List<Coord>>();
-    private List<Coord> _tmpPathForDFS = new List<Coord>();
+    private List<List<Transform>> _pathList = new List<List<Transform>>();
+    private List<Transform> _tmpPathForDFS = new List<Transform>();
 
     public void SetNodeMap(List<Transform> pathNodes, List<Transform> obstacleNodes)
     {
@@ -100,19 +102,22 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    public void FindOptimizedPath(Transform startNode, Transform endNode, FindingOptions option)
+    public List<Transform> FindOptimizedPath(Transform startNode, Transform endNode)
     {
         bool found = false;
 
-        switch (option)
+        switch (_option)
         {
             case FindingOptions.BFS:
                 found = BFS(start: FindNode(startNode).coord,
-                            end: FindNode(endNode).coord);
+                            end  : FindNode(endNode).coord);
                 break;
             case FindingOptions.DFS:
                 found = DFS(start: FindNode(startNode).coord,
-                            end: FindNode(endNode).coord);
+                            end  : FindNode(endNode).coord);
+                break;
+            case FindingOptions.FixedWayPoints:
+                found = FindFixedWayPoints();
                 break;
             default:
                 break;
@@ -120,7 +125,10 @@ public class Pathfinder : MonoBehaviour
 
         if (found)
         {
+            /* 디버깅용
             List<List<Transform>> nodePathList = new List<List<Transform>>();
+
+            _pathList.OrderBy(path => path.Count).First();
 
             for (int i = 0; i < _pathList.Count; i++)
             {
@@ -133,9 +141,10 @@ public class Pathfinder : MonoBehaviour
                     pathString += $" -> {nodePathList[i][j].name}";
                 }
                 Debug.Log($"[Pathfinder] : 최단 경로 탐색 됨. {pathString}");
-            }
+            }*/
+            return _pathList.OrderBy(path => path.Count).First();
         }
-
+        return null;
     }
 
     private bool BFS(Coord start, Coord end)
@@ -193,8 +202,21 @@ public class Pathfinder : MonoBehaviour
 
     private bool DFS(Coord start, Coord end)
     {
+        bool isFound = DFSLoop(start, end);
+        if (isFound)
+        {
+            _tmpPathForDFS.Add(GetNode(start));
+            _tmpPathForDFS.Reverse();
+        }
+
+        return isFound;
+    }
+
+    private bool DFSLoop(Coord start, Coord end)
+    {
+        bool isFound = false;
         _visited[start.y, start.x] = true;
-        _tmpPathForDFS.Add(start);
+        Debug.Log($"DFS ing... {start.x}, {start.y}");
 
         Coord next;
         for (int i = 0; i < _direction.GetLength(1); i++)
@@ -215,38 +237,54 @@ public class Pathfinder : MonoBehaviour
             if (_visited[next.y, next.x] == true)
                 continue;
 
+            // 도착 여부
             if (next.y == end.y && next.x == end.x)
             {
                 _pathList.Add(_tmpPathForDFS);
                 return true;
             }
-
-            return DFS(next, end);
+            else
+            {
+                isFound = DFSLoop(next, end);
+                if (isFound)
+                {
+                    _tmpPathForDFS.Add(GetNode(next));
+                    break;
+                }
+            }            
         }
 
-        return false;
+        return isFound;
     }
 
-    private List<Coord> CalcPath(List<KeyValuePair<Coord, Coord>> parentPairs, Coord start, Coord end)
+    private List<Transform> CalcPath(List<KeyValuePair<Coord, Coord>> parentPairs, Coord start, Coord end)
     {
-        List<Coord> path = new List<Coord>();
+        List<Transform> path = new List<Transform>();
 
         Coord coord = parentPairs.Last().Value; // 제일 마지막 노드
-        path.Add(coord);
+        path.Add(GetNode(coord));
 
         int index = parentPairs.Count - 1;
         while (index > 0 &&
                parentPairs[index].Key != start)
         {
-            path.Add(parentPairs[index].Key);
+            path.Add(GetNode(parentPairs[index].Key));
             index = parentPairs.FindLastIndex(pair => pair.Value == parentPairs[index].Key);
         }
-
+        path.Add(GetNode(start));
         path.Reverse();
 
         return path;
     }
 
+    private bool FindFixedWayPoints()
+    {
+        if (WayPoints.instance == null)
+            return false;
+
+        _pathList.Add(WayPoints.instance.points.ToList());
+        return true;
+    }
 
     private Coord TransformToCoord(Transform node)
     {
@@ -267,6 +305,9 @@ public class Pathfinder : MonoBehaviour
 
     private Transform GetNode(Coord coord)
     {
+        if (_map[coord.y, coord.x].node == null)
+            Debug.LogError($"Failed to get node {coord.x},{coord.y}");
+
         return _map[coord.y, coord.x].node;
     }
 

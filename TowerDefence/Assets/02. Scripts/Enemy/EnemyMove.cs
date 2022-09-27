@@ -7,6 +7,11 @@ public class EnemyMove : MonoBehaviour
     private Transform _tr;
 
     public float speed = 1f;
+
+    private Pathfinder _pathfinder;
+    [SerializeField] private Transform _start;
+    [SerializeField] private Transform _end;
+    private List<Transform> _wayPoints;
     private int _wayPointIndex = 0;
     private Transform _nextWayPoint;
     private float _originY;
@@ -17,17 +22,20 @@ public class EnemyMove : MonoBehaviour
 
     private void Awake()
     {
+        _pathfinder = GetComponent<Pathfinder>();
         _tr = GetComponent<Transform>();
         _originY = _tr.position.y;
     }
 
     private void Start()
     {
-        WayPoints.instance.TryGetNextPoint(_wayPointIndex, out _nextWayPoint);
+        _wayPoints = _pathfinder.FindOptimizedPath(_start, _end);
+        _nextWayPoint = _wayPoints[0];
     }
 
     private void FixedUpdate()
     {
+
         _targetPos = new Vector3(_nextWayPoint.position.x,
                                  _originY,
                                  _nextWayPoint.position.z);
@@ -36,7 +44,7 @@ public class EnemyMove : MonoBehaviour
 
         if (Vector3.Distance(_targetPos, _tr.position) < _posTolerance)
         {
-            if (WayPoints.instance.TryGetNextPoint(_wayPointIndex, out _nextWayPoint))
+            if (TryGetNextPoint(_wayPointIndex, out _nextWayPoint))
             {
                 _wayPointIndex++;
             }
@@ -54,5 +62,17 @@ public class EnemyMove : MonoBehaviour
     {
         Player.instance.life -= 1;
         Destroy(gameObject);
+    }
+
+    public bool TryGetNextPoint(int currentPointIndex, out Transform nextPoint)
+    {
+        nextPoint = null;
+
+        if (currentPointIndex < _wayPoints.Count - 1)
+        {
+            nextPoint = _wayPoints[currentPointIndex + 1];
+        }
+
+        return nextPoint;
     }
 }
