@@ -16,13 +16,21 @@ MonoBehaviour:
   moneyInit: 500
   stageInfo:
   - enemySpawnDataList:
-    - prefab: {fileID: 0}
-      num: 0
-    - prefab: {fileID: 0}
-      num: 0
+    - spawnPointIndex: 0
+      goalPointIndex: 0
+      term: 0
+      delay: 0
+    - spawnPointIndex: 0
+      goalPointIndex: 0
+      term: 0
+      delay: 0
   - enemySpawnDataList:
-    - prefab: {fileID: 0}
-      num: 0
+    - spawnPointIndex: 0
+      goalPointIndex: 0
+      term: 0
+      delay: 0
   - enemySpawnDataList:
-    - prefab: {fileID: 0}
-      num: 0
+    - spawnPointIndex: 0
+      goalPointIndex: 0
+      term: 0
+      delay: 0

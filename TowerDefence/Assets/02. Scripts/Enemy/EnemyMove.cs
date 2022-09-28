@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class EnemyMove : MonoBehaviour
     private Vector3 _dir;
     private float _posTolerance = 0.05f;
 
+    public void SetStartEnd(Transform start, Transform end)
+    {
+        _start = start;
+        _end = end;
+    }
+ 
     private void Awake()
     {
         _pathfinder = GetComponent<Pathfinder>();
@@ -29,7 +36,11 @@ public class EnemyMove : MonoBehaviour
 
     private void Start()
     {
-        _wayPoints = _pathfinder.FindOptimizedPath(_start, _end);
+        if (_pathfinder.FindOptimizedPath(_start, _end, out _wayPoints == false)
+        {
+            throw new System.Exception("EnemyMove : 길찾기 실패 !");
+        }
+
         _nextWayPoint = _wayPoints[0];
     }
 
