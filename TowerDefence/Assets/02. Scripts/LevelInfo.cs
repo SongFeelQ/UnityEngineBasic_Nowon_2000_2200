@@ -7,12 +7,13 @@ public class LevelInfo : ScriptableObject
 {
     public int lifeInit;
     public int moneyInit;
-    public List<StageInfo> stageInfo;
+    public List<StageInfo> stagesInfo;
 }
 
 [System.Serializable]
 public class StageInfo
 {
+    public int id;
     public List<EnemySpawnData> enemySpawnDataList = new List<EnemySpawnData>();
 }
 
@@ -26,6 +27,7 @@ public class EnemySpawnData
     public float delay;
 }
 
+[System.Serializable]
 public class PoolElement
 {
     public GameObject prefab;

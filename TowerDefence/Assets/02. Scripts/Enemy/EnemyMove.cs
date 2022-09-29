@@ -6,12 +6,12 @@ using UnityEngine.Experimental.AI;
 public class EnemyMove : MonoBehaviour
 {
     private Transform _tr;
-
+    private Enemy _enemy;
     public float speed = 1f;
 
     private Pathfinder _pathfinder;
-    [SerializeField] private Transform _start;
-    [SerializeField] private Transform _end;
+    private Transform _start;
+    private Transform _end;
     private List<Transform> _wayPoints;
     private int _wayPointIndex = 0;
     private Transform _nextWayPoint;
@@ -29,14 +29,15 @@ public class EnemyMove : MonoBehaviour
  
     private void Awake()
     {
-        _pathfinder = GetComponent<Pathfinder>();
         _tr = GetComponent<Transform>();
+        _enemy = GetComponent<Enemy>();
+        _pathfinder = GetComponent<Pathfinder>();        
         _originY = _tr.position.y;
     }
 
     private void Start()
     {
-        if (_pathfinder.FindOptimizedPath(_start, _end, out _wayPoints == false)
+        if (_pathfinder.TryFindOptimizedPath(_start, _end, out _wayPoints) == false)
         {
             throw new System.Exception("EnemyMove : 길찾기 실패 !");
         }
@@ -46,7 +47,6 @@ public class EnemyMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         _targetPos = new Vector3(_nextWayPoint.position.x,
                                  _originY,
                                  _nextWayPoint.position.z);

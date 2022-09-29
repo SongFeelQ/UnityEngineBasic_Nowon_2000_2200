@@ -14,23 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeInit: 100
   moneyInit: 500
-  stageInfo:
-  - enemySpawnDataList:
-    - spawnPointIndex: 0
+  stagesInfo:
+  - id: 0
+    enemySpawnDataList:
+    - poolElement:
+        prefab: {fileID: 119990543726136746, guid: ea20408fdef61df4b9d7ae420ac9d2de, type: 3}
+        num: 5
+      spawnPointIndex: 0
       goalPointIndex: 0
-      term: 0
-      delay: 0
-    - spawnPointIndex: 0
-      goalPointIndex: 0
-      term: 0
-      delay: 0
-  - enemySpawnDataList:
-    - spawnPointIndex: 0
-      goalPointIndex: 0
-      term: 0
-      delay: 0
-  - enemySpawnDataList:
-    - spawnPointIndex: 0
-      goalPointIndex: 0
-      term: 0
+      term: 1
       delay: 0

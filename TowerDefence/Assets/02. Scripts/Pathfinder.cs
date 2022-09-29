@@ -79,7 +79,7 @@ public class Pathfinder : MonoBehaviour
         SetNodeMap(enemyPaths.ToList(), nodes.ToList());
     }
 
-    public List<Transform> FindOptimizedPath(Transform startNode, Transform endNode, out List<Transform> optimizedPath)
+    public bool TryFindOptimizedPath(Transform startNode, Transform endNode, out List<Transform> optimizedPath)
     {
         bool found = false;
         optimizedPath = null;
