@@ -10,8 +10,8 @@ public class EnemyMove : MonoBehaviour
     public float speed = 1f;
 
     private Pathfinder _pathfinder;
-    private Transform _start;
-    private Transform _end;
+    [SerializeField] private Transform _start;
+    [SerializeField] private Transform _end;
     private List<Transform> _wayPoints;
     private int _wayPointIndex = 0;
     private Transform _nextWayPoint;
@@ -50,7 +50,6 @@ public class EnemyMove : MonoBehaviour
         _targetPos = new Vector3(_nextWayPoint.position.x,
                                  _originY,
                                  _nextWayPoint.position.z);
-
         _dir = (_targetPos - _tr.position).normalized;
 
         if (Vector3.Distance(_targetPos, _tr.position) < _posTolerance)
@@ -72,7 +71,7 @@ public class EnemyMove : MonoBehaviour
     private void OnReachedToEnd()
     {
         Player.instance.life -= 1;
-        Destroy(gameObject);
+        _enemy.Die();
     }
 
     public bool TryGetNextPoint(int currentPointIndex, out Transform nextPoint)
