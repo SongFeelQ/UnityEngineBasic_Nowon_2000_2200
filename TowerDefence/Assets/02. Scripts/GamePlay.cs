@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class GamePlay : MonoBehaviour
     private float _nextStageDelay = 0.5f;
 
     [SerializeField] private EnemySpawner _spawner;
+    [SerializeField] private LevelCompletePanel _levelCompletePrefab;
+    [SerializeField] private LevelFailedPanel _levelFailedPrefab;
     
     public void StartLevel()
     {
@@ -34,10 +37,24 @@ public class GamePlay : MonoBehaviour
             state = States.SetUpLevel;
     }
 
+    public void FailLevel()
+    {
+        state = States.LevelFailed;
+    }
+
     public void NextStage()
     {
         if (state == States.WaitForStageFinished)
             state = States.SetUpLevel;
+    }
+
+    private void Pause(bool pause)
+    {
+        if (pause)
+            Time.timeScale = 1f;
+        else
+            Time.timeScale = 0f;
+                
     }
 
     private void Awake()
@@ -71,6 +88,7 @@ public class GamePlay : MonoBehaviour
             case States.SetUpLevel:
                 {
                     Pathfinder.SetNodeMap();
+                    Player.instance.OnLifeChanged += CheckLevelFailed;
                     state = States.PlayStartEvents;
                 }
                 break;
@@ -101,10 +119,22 @@ public class GamePlay : MonoBehaviour
                 }
                 break;
             case States.LevelCompleted:
+                {
+                    Instantiate(_levelCompletePrefab).SetUp(levelInfo.level,
+                                                            (float)Player.instance.life / levelInfo.lifeInit,
+                                                            () => Pause(false));
+                    state = States.WaitForUser;
+                }
                 break;
             case States.LevelFailed:
+                {
+                    Instantiate(_levelFailedPrefab).SetUp(levelInfo.level, 
+                                                          () => Pause(false));
+                    state = States.WaitForUser;
+                }
                 break;
             case States.WaitForUser:
+                // nothing to do
                 break;
             default:
                 break;
@@ -163,5 +193,10 @@ public class GamePlay : MonoBehaviour
         state = States.LevelCompleted;
     }
 
+    private void CheckLevelFailed(int life)
+    {
+        if (life <= 0)
+            state = States.LevelFailed;
+    }
     
 }

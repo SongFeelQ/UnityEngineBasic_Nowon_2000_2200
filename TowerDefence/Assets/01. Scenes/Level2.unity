@@ -2152,7 +2152,7 @@ MonoBehaviour:
   goalPoints:
   - {fileID: 1610744599}
   - {fileID: 1887534136}
-  _skipButtonPrefab: {fileID: 0}
+  _skipButtonUIPrefab: {fileID: 1117942299939089868, guid: 4975c5c8173cd6a44891c7233699227a, type: 3}
 --- !u!4 &181019028
 Transform:
   m_ObjectHideFlags: 0
@@ -5806,7 +5806,7 @@ GameObject:
   - component: {fileID: 437092806}
   - component: {fileID: 437092805}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas - Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15109,6 +15109,8 @@ MonoBehaviour:
   currentStage: 0
   currentStageId: 0
   _spawner: {fileID: 181019027}
+  _levelCompletePrefab: {fileID: 3588124055597228369, guid: 6fbdf7eb613a0a740ad2880fa70de927, type: 3}
+  _levelFailedPanel: {fileID: 0}
 --- !u!4 &1177546711
 Transform:
   m_ObjectHideFlags: 0

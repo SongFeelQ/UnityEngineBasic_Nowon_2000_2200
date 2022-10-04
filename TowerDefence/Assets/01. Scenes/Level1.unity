@@ -5804,7 +5804,7 @@ GameObject:
   - component: {fileID: 437092806}
   - component: {fileID: 437092805}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas - Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15219,6 +15219,8 @@ MonoBehaviour:
   currentStage: 0
   currentStageId: 0
   _spawner: {fileID: 181019027}
+  _levelCompletePrefab: {fileID: 3588124055597228369, guid: 6fbdf7eb613a0a740ad2880fa70de927, type: 3}
+  _levelFailedPanel: {fileID: 0}
 --- !u!4 &1177546711
 Transform:
   m_ObjectHideFlags: 0

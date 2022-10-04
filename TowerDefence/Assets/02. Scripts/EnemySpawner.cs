@@ -68,30 +68,30 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = stageList.Count - 1; i >= 0; i--)
         {
-            bool isSpawnFinished = true;
+            bool tmpSpawnFinished = true;
             for (int j = 0; j < stageList[i].enemySpawnDataList.Count; j++)
             {
                 if (spawnCountersList[i][j] > 0)
                 {
-                    isSpawnFinished = false;
+                    tmpSpawnFinished = false;
 
                     if (delayTimersList[i][j] < 0)
                     {
                         if (timersList[i][j] < 0)
                         {
-                        
+
                             GameObject go = Instantiate(original: stageList[i].enemySpawnDataList[j].poolElement.prefab,
                                                         position: spawnPoints[stageList[i].enemySpawnDataList[j].spawnPointIndex].position,
                                                         rotation: Quaternion.identity);
 
                             enemiesSpawnedList[i].Add(go);
-                            
+
                             int tmpId = stageList[i].id;
-                            go.GetComponent<Enemy>().OnDie += () => 
+                            go.GetComponent<Enemy>().OnDie += () =>
                             {
                                 int tmpIdx = stageList.FindIndex(stageInfo => stageInfo.id == tmpId);
 
-                                enemiesSpawnedList[tmpIdx].Remove(go); 
+                                enemiesSpawnedList[tmpIdx].Remove(go);
                                 if (enemiesSpawnedList[tmpIdx].Count == 0)
                                 {
                                     OnStageFinished(tmpId);
@@ -107,23 +107,22 @@ public class EnemySpawner : MonoBehaviour
 
                             timersList[i][j] = stageList[i].enemySpawnDataList[j].term;
                             spawnCountersList[i][j]--;
-                            isSpawnFinished = false;
+                        }
+                        else 
+                        {
+                            timersList[i][j] -= Time.deltaTime;
                         }                    
                     }
                     else
                     {
-                        timersList[i][j] -= Time.deltaTime;
+                        delayTimersList[i][j] -= Time.deltaTime;
                     }
-                }
-                else
-                {
-                    delayTimersList[i][j] -= Time.deltaTime;
                 }
             }
 
             if (stageList[i].id == GamePlay.instance.currentStageId)
             {
-                spawnFinishedTrigger = isSpawnFinished;
+                spawnFinishedTrigger = tmpSpawnFinished;
             }
         }
     }
