@@ -19,9 +19,10 @@ MonoBehaviour:
   - id: 0
     enemySpawnDataList:
     - poolElement:
+        name: TestEnemy
         prefab: {fileID: 1754767549349374645, guid: ea20408fdef61df4b9d7ae420ac9d2de, type: 3}
         num: 5
       spawnPointIndex: 0
       goalPointIndex: 0
       term: 1
-      delay: 0
+      delay: 3

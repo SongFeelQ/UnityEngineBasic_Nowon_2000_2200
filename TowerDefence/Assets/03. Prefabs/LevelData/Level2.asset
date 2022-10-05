@@ -16,19 +16,21 @@ MonoBehaviour:
   lifeInit: 100
   moneyInit: 500
   stagesInfo:
-  - id: 0
+  - id: 1
     enemySpawnDataList:
     - poolElement:
+        name: TestEnemy
         prefab: {fileID: 1754767549349374645, guid: ea20408fdef61df4b9d7ae420ac9d2de, type: 3}
         num: 5
       spawnPointIndex: 0
       goalPointIndex: 0
       term: 1
-      delay: 0
+      delay: 3
     - poolElement:
+        name: TestEnemy2
         prefab: {fileID: 1754767549349374645, guid: a600616c947624745a3356ebfc23d062, type: 3}
         num: 5
       spawnPointIndex: 1
       goalPointIndex: 1
       term: 1
-      delay: 0
+      delay: 3
