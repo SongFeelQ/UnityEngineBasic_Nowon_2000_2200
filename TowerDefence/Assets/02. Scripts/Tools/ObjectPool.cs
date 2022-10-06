@@ -50,6 +50,7 @@ public class ObjectPool : MonoBehaviour
     /// <param name="name"> 대여 이름</param>
     /// <param name="spawnPoint"> 배송 위치</param>
     /// <returns></returns>
+    /// 
     public GameObject Spawn(string name, Vector3 spawnPoint)
     {
         if (spawnedQueuePairs.ContainsKey(name) == false)
@@ -71,7 +72,32 @@ public class ObjectPool : MonoBehaviour
 
         GameObject go = spawnedQueuePairs[name].Dequeue();
         go.transform.position = spawnPoint;
-        go.transform.rotation = Quaternion.identity;
+        go.transform.SetParent(null);
+        go.SetActive(true);
+        return go;
+    }
+    public GameObject Spawn(string name, Vector3 spawnPoint, Quaternion rotation)
+    {
+        if (spawnedQueuePairs.ContainsKey(name) == false)
+            return null;
+
+        // 생성해 놓았던 객체들을 모두 다 빌려줬을 떄 새로 생성함
+        if (spawnedQueuePairs[name].Count <= 0)
+        {
+            PoolElement poolElement = poolElements.Find(element => element.name == name);
+            if (poolElement != null)
+            {
+                // 원래 소환 갯수에 비례하여 미리 생성해놓음
+                for (int i = 0; i < Math.Ceiling(Math.Log10(poolElement.num)); i++)
+                {
+                    InstantiatePoolElement(poolElement);
+                }
+            }
+        }
+
+        GameObject go = spawnedQueuePairs[name].Dequeue();
+        go.transform.position = spawnPoint;
+        go.transform.rotation = rotation;
         go.transform.SetParent(null);
         go.SetActive(true);
         return go;
@@ -85,7 +111,7 @@ public class ObjectPool : MonoBehaviour
     {
         if (spawnedQueuePairs.ContainsKey(obj.name) == false)
         {
-            Debug.LogError($"[ObjectPool] : {obj.name} error.");
+            Debug.LogError($"[ObjectPool] : {obj.name} 는 왜가져왔어? 내가 빌려준적이 없는데?");
             return;
         }
 
@@ -96,6 +122,17 @@ public class ObjectPool : MonoBehaviour
         RearrangeSiblings(obj);
     }
 
+    public void Return(GameObject obj, float sec)
+    {
+        if (spawnedQueuePairs.ContainsKey(obj.name) == false)
+        {
+            Debug.LogError($"[ObjectPool] : {obj.name} error.");
+            return;
+        }
+
+        StartCoroutine(E_Return(obj, sec));
+    }
+
     // ==================================================
     // *************** Private Methods ******************
     // ==================================================
@@ -103,6 +140,17 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         transform.position = new Vector3(5000, 5000, 5000);
+    }
+
+    IEnumerator E_Return(GameObject obj, float sec)
+    {
+        yield return new WaitForSeconds(sec);
+
+        obj.transform.SetParent(transform);
+        obj.transform.localPosition = Vector3.zero;
+        spawnedQueuePairs[obj.name].Enqueue(obj);
+        obj.SetActive(false);
+        RearrangeSiblings(obj);
     }
 
     private GameObject InstantiatePoolElement(PoolElement poolElement)

@@ -12,9 +12,11 @@ public class ProjectileBullet : Projectile
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {
                 enemy.hp -= damage;
-                GameObject effect = Instantiate(_explosionEffect.gameObject, tr.position, Quaternion.LookRotation(tr.position - target.position));
-
+                GameObject effect = ObjectPool.instance.Spawn("BulletExplosionEffect", tr.position, Quaternion.LookRotation(tr.position - target.position));
                 Destroy(effect, _explosionEffect.main.duration + _explosionEffect.main.startLifetime.constantMax);
+                ObjectPool.instance.Return(effect, _explosionEffect.main.duration + _explosionEffect.main.startLifetime.constant);
+                ObjectPool.instance.Return(this.gameObject);
+
                 Destroy(gameObject);
             }
         }

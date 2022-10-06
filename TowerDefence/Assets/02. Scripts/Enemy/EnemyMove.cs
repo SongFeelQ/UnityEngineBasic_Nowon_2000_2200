@@ -8,6 +8,7 @@ public class EnemyMove : MonoBehaviour
     private Transform _tr;
     private Enemy _enemy;
     public float speed = 1f;
+    [SerializeField] private Vector3 _offset;
 
     private Pathfinder _pathfinder;
     [SerializeField] private Transform _start;
@@ -31,8 +32,7 @@ public class EnemyMove : MonoBehaviour
     {
         _tr = GetComponent<Transform>();
         _enemy = GetComponent<Enemy>();
-        _pathfinder = GetComponent<Pathfinder>();        
-        _originY = _tr.position.y;
+        _pathfinder = GetComponent<Pathfinder>();       
     }
 
     private void Start()
@@ -43,7 +43,9 @@ public class EnemyMove : MonoBehaviour
         }
 
         _nextWayPoint = _wayPoints[0];
+        _originY = _tr.position.y;
     }
+
 
     private void FixedUpdate()
     {
