@@ -1,82 +1,53 @@
-癤퓎sing System;
-public abstract class StateBase<T> : IState<T> where T : Enum
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StateBase<T> : IState<T> where T : Enum
 {
-    protected AnimationManager animationManager;  
-    protected StateMachineBase<T> stateMachine;
-    protected T canExecuteConditionMask;
-    protected T nextTarget;
+    public T stateType {get; protected set;}
 
-    public bool IsBusy => current > IState<T>.Commands.Idle && current < IState<T>.Commands.Finish;
-    public IState<T>.Commands current { get; protected set; }
+    public bool canExecute => (_condition != null ? _condition.Invoke() : true) &&
+                              _animationManager.isPreviousMachineHasFinished &&
+                              _animationManager.isPreviousStateHasFinished;
 
-    public virtual bool canExecute => canExecuteConditionMask.HasFlag(stateMachine.currentType) &&
-                                      animationManager.isPreviousStateHasFinished;
+    private Func<bool> _condition;
+    private List<KeyValuePair<Func<bool>, T>> _transitions;
+    private AnimationManager _animationManager;
 
-    public T machineState { get; protected set; }
-
-    public StateBase(StateMachineBase<T> stateMachine, 
-                     T machineState, 
-                     T canExecuteConditionMask,
-                     T nextTarget)
+    public StateBase(T stateType, Func<bool> condition, List<KeyValuePair<Func<bool>, T>> transtions, GameObject owner)
     {
-        this.stateMachine = stateMachine;
-        this.machineState = machineState;
-        this.canExecuteConditionMask = canExecuteConditionMask;
-        this.nextTarget = nextTarget;
-        animationManager = stateMachine.owner.GetComponent<AnimationManager>();
+        this.stateType = stateType;
+        this._condition = condition;
+        this._transitions = transtions;
+        this._animationManager = owner.GetComponent<AnimationManager>();
     }
 
-    public virtual void Execute()
+    public void Execute()
     {
-        current = IState<T>.Commands.Prepare;
+        Workflow().Reset();
     }
 
-    public virtual T Update()
+    public void Stop()
     {
-        T next = machineState;
+        Workflow().Reset();
+    }
+    
+    public T Tick()
+    {
+        return Workflow().Current;
+    }
 
-        switch (current)
+    public IEnumerator<T> Workflow()
+    {
+        // 다음 상태로 transition 가능한지 체크 (가장 마지막 상태에서 구현하는 내용)
+        while (true)
         {
-            case IState<T>.Commands.Idle:                
-                break;
-            case IState<T>.Commands.Prepare:
-                MoveNext();
-                break;
-            case IState<T>.Commands.Casting:
-                MoveNext();
-                break;
-            case IState<T>.Commands.WaitForCastingFinished:
-                MoveNext();
-                break;
-            case IState<T>.Commands.Action:
-                MoveNext();
-                break;
-            case IState<T>.Commands.WaitForActionFinished:
-                MoveNext();
-                break;
-            case IState<T>.Commands.Finish:
-                MoveNext();
-                break;
-            case IState<T>.Commands.WaitForFinished:
-                next = nextTarget;
-                break;
-            default:
-                break;
+            foreach (var transition in _transitions)
+            {
+                if (transition.Key.Invoke())
+                    yield return transition.Value;
+            }
+            yield return stateType;
         }
-
-        return next;
-    }
-
-    public void MoveNext()
-    {
-        if (current >= IState<T>.Commands.WaitForFinished)
-            throw new System.Exception($"[{this.GetType()}] : not enable to move next");
-
-        current++;
-    }
-
-    public virtual void Reset()
-    {
-        current = IState<T>.Commands.Idle;
     }
 }
