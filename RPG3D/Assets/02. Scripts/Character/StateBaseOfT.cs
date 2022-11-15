@@ -2,52 +2,74 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateBase<T> : IState<T> where T : Enum
+public abstract class StateBase<T> : IState<T> where T : Enum
 {
+    public IState<T>.Commands current { get; protected set; }
+
     public T stateType {get; protected set;}
 
     public bool canExecute => (_condition != null ? _condition.Invoke() : true) &&
                               _animationManager.isPreviousMachineHasFinished &&
                               _animationManager.isPreviousStateHasFinished;
 
+
     private Func<bool> _condition;
     private List<KeyValuePair<Func<bool>, T>> _transitions;
     private AnimationManager _animationManager;
 
-    public StateBase(T stateType, Func<bool> condition, List<KeyValuePair<Func<bool>, T>> transtions, GameObject owner)
+    public StateBase(T stateType, Func<bool> condition, List<KeyValuePair<Func<bool>, T>> transitions, GameObject owner)
     {
         this.stateType = stateType;
         this._condition = condition;
-        this._transitions = transtions;
+        this._transitions = transitions;
         this._animationManager = owner.GetComponent<AnimationManager>();
     }
 
-    public void Execute()
+    public virtual void Execute()
     {
-        Workflow().Reset();
+        current = IState<T>.Commands.Prepare;
     }
 
-    public void Stop()
+    public virtual void Stop()
     {
-        Workflow().Reset();
-    }
-    
-    public T Tick()
-    {
-        return Workflow().Current;
+
     }
 
-    public IEnumerator<T> Workflow()
+    public virtual T Tick()
     {
-        // 다음 상태로 transition 가능한지 체크 (가장 마지막 상태에서 구현하는 내용)
-        while (true)
+        T next = stateType;
+
+        switch (current)
         {
-            foreach (var transition in _transitions)
-            {
-                if (transition.Key.Invoke())
-                    yield return transition.Value;
-            }
-            yield return stateType;
+            case IState<T>.Commands.Idle:
+                break;
+            case IState<T>.Commands.Prepare:
+                break;
+            case IState<T>.Commands.Castin:
+                break;
+            case IState<T>.Commands.OnAction:
+                break;
+            case IState<T>.Commands.Finish:
+                break;
+            case IState<T>.Commands.WaitUntilFinished:
+                foreach (var transition in _transitions)
+                {
+                    if (transition.Key.Invoke())
+                    {
+                        next = transition.Value;
+                    }
+                }
+                break;
+            default:
+                break;
         }
+
+        return next;
+    }
+
+    public void MoveNext()
+    {
+        if (current < IState<T>.Commands.WaitUntilFinished)
+            current++;
     }
 }

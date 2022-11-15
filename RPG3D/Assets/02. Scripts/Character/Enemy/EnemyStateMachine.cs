@@ -1,0 +1,94 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
+
+public enum EnemyStates
+{
+    Idle,
+    Move,
+    Jump,
+    Attack,
+    Hurt,
+    Die,
+}
+
+public class EnemyStateMachine : StateMachineBase<EnemyStates>
+{
+    public EnemyStateMachine(GameObject owner) : base(owner)
+    {
+    }
+
+    protected override void InitStates()
+    {
+        IState<EnemyStates> temp;
+        GroundDetector groundDetector = owner.GetComponent<GroundDetector>();
+        AnimationManager animationManager = owner.GetComponent<AnimationManager>();
+
+        // Idle
+        temp = new EnemyStateIdle(EnemyStates.Idle,
+                                  () => true,
+                                  new List<KeyValuePair<Func<bool>, EnemyStates>>(),
+                                  owner);
+        states.Add(EnemyStates.Idle, temp);
+
+        // Move
+        temp = new EnemyStateMove(EnemyStates.Move,
+                                  () => true,
+                                  new List<KeyValuePair<Func<bool>, EnemyStates>>(),
+                                  owner);
+        states.Add(EnemyStates.Move, temp);
+
+        // Jump
+        temp = new EnemyStateJump(stateType: EnemyStates.Jump,
+                                  condition: () =>
+                                             (currentType == EnemyStates.Idle || currentType == EnemyStates.Move) &&
+                                             groundDetector.isDetected,
+                                  transitions: new List<KeyValuePair<Func<bool>, EnemyStates>>()
+                                               {
+                                                   new KeyValuePair<Func<bool>, EnemyStates>
+                                                   (
+                                                       () => groundDetector.isDetected,
+                                                       EnemyStates.Move
+                                                   )                                      
+                                               },
+                                  owner: owner);
+        states.Add(EnemyStates.Jump, temp);
+
+        // Attack
+        temp = new EnemyStateAttack(stateType: EnemyStates.Attack,
+                                    condition: () => true,
+                                    transitions: new List<KeyValuePair<Func<bool>, EnemyStates>>()
+                                                 {
+                                                     new KeyValuePair<Func<bool>, EnemyStates>
+                                                     (
+                                                         () => groundDetector.isDetected,
+                                                         EnemyStates.Move
+                                                     )
+                                                 },
+                                    owner: owner);
+        states.Add(EnemyStates.Attack, temp);
+
+        // Hurt
+        temp = new EnemyStateHurt(stateType: EnemyStates.Hurt,
+                                  condition: () => true,
+                                  transitions: new List<KeyValuePair<Func<bool>, EnemyStates>>()
+                                               {
+                                                   new KeyValuePair<Func<bool>, EnemyStates>
+                                                   (
+                                                       () => groundDetector.isDetected,
+                                                       EnemyStates.Move
+                                                   )
+                                               },
+                                  owner: owner);
+        states.Add(EnemyStates.Hurt, temp);
+
+        // Die
+        temp = new EnemyStateDie(stateType: EnemyStates.Die,
+                                 condition: () => true,
+                                 transitions: new List<KeyValuePair<Func<bool>, EnemyStates>>(),
+                                 owner: owner);
+        states.Add(EnemyStates.Die, temp);
+    }
+}

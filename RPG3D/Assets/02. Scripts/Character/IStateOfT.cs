@@ -3,19 +3,21 @@ using System;
 
 public interface IState<T> where T : Enum
 {
+    public enum Commands
+    {
+        Idle,
+        Prepare,
+        Castin,
+        OnAction,
+        Finish,
+        WaitUntilFinished,        
+    }
+    public Commands current { get; }
     public T stateType { get;  }
     public bool canExecute { get; }
-    public void Execute()
-    {
-        Workflow().Reset();
-    }
+    public void Execute();
 
     public void Stop();
-    public T Tick()
-    {
-        Workflow().MoveNext();
-        return Workflow().Current;
-    }
+    public T Tick();
 
-    public IEnumerator<T> Workflow();
 }
