@@ -151,13 +151,14 @@ namespace BT
         public Behavior Child { get; private set; }
         private Func<bool> _condition;
 
-
         public Condition(Func<bool> condition)
         {
             _condition = condition;
         }
-
-        public void SetChild(Behavior child) => Child = child;
+        public void SetChild(Behavior child)
+        {
+            Child = child;
+        }
 
         public void SetCondition(Func<bool> condition) => _condition = condition;
 
@@ -169,6 +170,8 @@ namespace BT
             else
                 return Status.Failure;
         }
+
+        
     }
 
     public abstract class Composite : Behavior
@@ -312,8 +315,11 @@ namespace BT
     public abstract class Decorator : Behavior, IChild
     {
         public Behavior Child { get; private set; }
-
-        public void SetChild(Behavior child) => Child = child;
+        
+        public void SetChild(Behavior child)
+        {
+            Child = child;
+        }
 
         public override Status Invoke(out Behavior leaf)
         {
@@ -321,6 +327,8 @@ namespace BT
         }
 
         public abstract Status Decorate(Status status, out Behavior leaf);
+
+       
     }
 
     public class RepeatForSeconds : Decorator
@@ -364,15 +372,7 @@ namespace BT
                     break;
 
             }
-
-            _timeMark = Time.time;
-            yield return null;
-
-            while (Time.time - _timeMark < _time)
-            {
-                Child.Invoke(out leaf);
-                yield return null;
-            }
+            return _tmpResult;
         }
     }        
 
