@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public enum EnemyStates
 {
@@ -49,25 +48,28 @@ public class EnemyStateMachine : StateMachineBase<EnemyStates>
                                                {
                                                    new KeyValuePair<Func<bool>, EnemyStates>
                                                    (
-                                                       () => groundDetector.isDetected,
-                                                       EnemyStates.Move
-                                                   )                                      
+                                                     () => groundDetector.isDetected,
+                                                     EnemyStates.Move
+                                                   )
                                                },
                                   owner: owner);
+
         states.Add(EnemyStates.Jump, temp);
 
         // Attack
         temp = new EnemyStateAttack(stateType: EnemyStates.Attack,
-                                    condition: () => true,
+                                    condition: () =>
+                                               (currentType == EnemyStates.Idle || currentType == EnemyStates.Move),
                                     transitions: new List<KeyValuePair<Func<bool>, EnemyStates>>()
                                                  {
                                                      new KeyValuePair<Func<bool>, EnemyStates>
                                                      (
-                                                         () => groundDetector.isDetected,
-                                                         EnemyStates.Move
+                                                       () => animationManager.GetNormalizedTime() >= 1.0f,
+                                                       EnemyStates.Move
                                                      )
                                                  },
                                     owner: owner);
+
         states.Add(EnemyStates.Attack, temp);
 
         // Hurt
@@ -77,18 +79,20 @@ public class EnemyStateMachine : StateMachineBase<EnemyStates>
                                                {
                                                    new KeyValuePair<Func<bool>, EnemyStates>
                                                    (
-                                                       () => groundDetector.isDetected,
-                                                       EnemyStates.Move
+                                                     () => animationManager.GetNormalizedTime() >= 1.0f,
+                                                     EnemyStates.Move
                                                    )
                                                },
                                   owner: owner);
+
         states.Add(EnemyStates.Hurt, temp);
 
         // Die
         temp = new EnemyStateDie(stateType: EnemyStates.Die,
-                                 condition: () => true,
-                                 transitions: new List<KeyValuePair<Func<bool>, EnemyStates>>(),
-                                 owner: owner);
+                                  condition: () => true,
+                                  transitions: new List<KeyValuePair<Func<bool>, EnemyStates>>(),
+                                  owner: owner);
+
         states.Add(EnemyStates.Die, temp);
     }
 }

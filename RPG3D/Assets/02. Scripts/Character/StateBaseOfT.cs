@@ -8,21 +8,21 @@ public abstract class StateBase<T> : IState<T> where T : Enum
 
     public T stateType {get; protected set;}
 
-    public bool canExecute => (_condition != null ? _condition.Invoke() : true) &&
-                              _animationManager.isPreviousMachineHasFinished &&
-                              _animationManager.isPreviousStateHasFinished;
+    public bool canExecute => (condition != null ? condition.Invoke() : true) &&
+                              animationManager.isPreviousMachineHasFinished &&
+                              animationManager.isPreviousStateHasFinished;
 
 
-    private Func<bool> _condition;
-    private List<KeyValuePair<Func<bool>, T>> _transitions;
-    private AnimationManager _animationManager;
+    protected Func<bool> condition;
+    protected List<KeyValuePair<Func<bool>, T>> transitions;
+    protected AnimationManager animationManager;
 
     public StateBase(T stateType, Func<bool> condition, List<KeyValuePair<Func<bool>, T>> transitions, GameObject owner)
     {
         this.stateType = stateType;
-        this._condition = condition;
-        this._transitions = transitions;
-        this._animationManager = owner.GetComponent<AnimationManager>();
+        this.condition = condition;
+        this.transitions = transitions;
+        this.animationManager = owner.GetComponent<AnimationManager>();
     }
 
     public virtual void Execute()
@@ -32,7 +32,7 @@ public abstract class StateBase<T> : IState<T> where T : Enum
 
     public virtual void Stop()
     {
-
+        current = IState<T>.Commands.Idle;
     }
 
     public virtual T Tick()
@@ -52,7 +52,7 @@ public abstract class StateBase<T> : IState<T> where T : Enum
             case IState<T>.Commands.Finish:
                 break;
             case IState<T>.Commands.WaitUntilFinished:
-                foreach (var transition in _transitions)
+                foreach (var transition in transitions)
                 {
                     if (transition.Key.Invoke())
                     {
